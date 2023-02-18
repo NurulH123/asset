@@ -15,6 +15,10 @@ class CreateComponentTransactionsTable extends Migration
     {
         Schema::create('component_transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('asset_id')->constrained('assets');
+            $table->foreignId('component_id')->constrained('components');
+            $table->integer('quantity');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -27,6 +27,7 @@ class CreateAssetsTable extends Migration
             $table->integer('cost');
             $table->boolean('is_checkout');
             $table->string('status');
+            $table->date('purchase_date');
             $table->text('describe');
             $table->timestamps();
         });

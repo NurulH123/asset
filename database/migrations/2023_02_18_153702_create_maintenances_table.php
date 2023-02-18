@@ -15,6 +15,11 @@ class CreateMaintenancesTable extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('asset_id')->constrained('assets');
+            $table->foreignId('supplier_id')->constrained('suppliers');
+            $table->string('type');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }

@@ -15,6 +15,10 @@ class CreateAssetTransactionsTable extends Migration
     {
         Schema::create('asset_transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('asset_id')->constrained('assets');
+            $table->foreignId('employee_id')->constrained('employees');
+            $table->date('status_date');
+            $table->string('status');
             $table->timestamps();
         });
     }
