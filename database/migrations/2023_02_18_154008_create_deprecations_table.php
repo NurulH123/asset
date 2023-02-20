@@ -15,7 +15,9 @@ class CreateDeprecationsTable extends Migration
     {
         Schema::create('deprecations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('periode');
+            $table->integer('asset_value');
+            $table->morphs('deprecationable');
         });
     }
 

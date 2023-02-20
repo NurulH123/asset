@@ -20,6 +20,18 @@ class CreateComponentTransactionsTable extends Migration
             $table->integer('quantity');
             $table->string('status');
             $table->timestamps();
+
+            /**
+             * ===================================================================
+             * |-------------------------- CATATAN KECIL -------------------------
+             * ===================================================================
+             *
+             *  # QUANTITY = Jumlah yg dipakai untuk satu jenis asset
+             *
+             *  # STATUS = - checkout
+             *             - check-in
+             *
+             */
         });
     }
 

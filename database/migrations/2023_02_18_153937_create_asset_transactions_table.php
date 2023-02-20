@@ -20,6 +20,18 @@ class CreateAssetTransactionsTable extends Migration
             $table->date('status_date');
             $table->string('status');
             $table->timestamps();
+
+            /**
+             * ===================================================================
+             * |-------------------------- CATATAN KECIL -------------------------
+             * ===================================================================
+             *
+             *  # STATUS_DATE = Tanggal saat di checkout atau check-in
+             *
+             *  # STATUS = - checkout
+             *             - check-in
+             *
+             */
         });
     }
 
