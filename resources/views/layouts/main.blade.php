@@ -24,6 +24,13 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+    <style>
+        .asset-title h3{
+            color: #FFED00;
+            font-family: 'Lobster', cursive;
+            text-shadow: 1px 1px 2px #ccc;
+        }
+    </style>
 
     @stack('css')
     @stack('scripts_top')
@@ -51,14 +58,14 @@
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
-        <div class="page-wrapper">
+        <div class="page-wrapper p-4">
 
-            @include('layouts.components.navbar_bottom')
+            {{-- @include('layouts.components.navbar_bottom') --}}
 
             @yield('content')
 
-            @include('layouts.components.footer')
         </div>
+        @include('layouts.components.footer')
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->

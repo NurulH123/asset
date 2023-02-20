@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'auth.login');
 Route::view('/register', 'auth.register1');
 
-Route::view('/dashboard', 'dashboard.dashboard.index');
+Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
+
+    Route::view('/dashboard', 'dashboard.dashboard.index');
+    Route::resource('asset-type', 'AssetTypeController');
+});
 
 Route::view('test', 'dashboard.dashboard.index');
 Auth::routes();
