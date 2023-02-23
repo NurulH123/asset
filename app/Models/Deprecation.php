@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Deprecation extends Model
 {
-    //
+    protected $guarded = ['id'];
+    
 }

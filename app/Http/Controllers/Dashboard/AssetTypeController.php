@@ -21,10 +21,11 @@ class AssetTypeController extends Controller
 
     public function store(Request $request)
     {
-        $data = $this->validate($request,
+        $this->validate($request,
             ['name' => 'required'],
             ['name.required' => 'Nama Harus Diisi']
         );
+        $data = $request->all();
 
         $addType = AssetType::create($data);
 
