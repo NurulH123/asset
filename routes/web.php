@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'auth.login');
-Route::view('/register', 'auth.register1');
+Route::view('/', 'auth.login')->middleware('guest');
+// Route::view('/register', 'auth.register1');
 
 Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
 
@@ -23,7 +23,7 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
     Route::resource('asset-type', 'AssetTypeController');
 });
 
-Route::view('test', 'dashboard.dashboard.index');
+// Route::view('test', 'dashboard.dashboard.index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
