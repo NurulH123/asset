@@ -3,7 +3,7 @@
         <div class="modal-content">
             <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
             <div class="modal-body modal-body-md">
-                <h5 class="title mb-4">Tambah Tipe Aset</h5>
+                <h5 class="title mb-4"></h5>
                 <div class="nk-country-m_general">
                     <form method="post">
                         @csrf
