@@ -32,4 +32,19 @@ class AssetTypeController extends Controller
         return $addType;
     }
 
+    public function edit(AssetType $asset_type)
+    {
+        return $asset_type;
+    }
+
+    public function update(Request $request, AssetType $asset_type)
+    {
+
+        return $asset_type->update($request->all());
+    }
+
+    public function destroy(AssetType $asset_type)
+    {
+        return  $asset_type->delete();
+    }
 }

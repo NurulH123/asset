@@ -7,10 +7,12 @@
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
     <!-- Page Title  -->
-    <title>@yield('name')</title>
+    <title>@yield('title')</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css?ver=3.1.2') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('assets/css/theme.css?ver=3.1.2') }}">
@@ -40,7 +42,7 @@
             <!-- wrap @e -->
         </div>
         <!-- main @e -->
-        @include('modal_region')
+        @include('modal_general_form')
     </div>
     <!-- app-root @e -->
     <!-- JavaScript -->
@@ -58,8 +60,6 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
         });
-
-
     </script>
 
     @stack('scripts_bottom')
