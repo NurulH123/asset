@@ -4,25 +4,48 @@
         ajax: "{{ route('asset-type.index') }}",
         processing: true,
         serverSide: true,
-        columns : [
-            { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-            { data: 'name', name: 'name' },
-            { data: 'describe', name: 'describe' },
-            { data: 'action', name: 'action' },
+        columns: [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex'
+            },
+            {
+                data: 'name',
+                name: 'name'
+            },
+            {
+                data: 'describe',
+                name: 'describe'
+            },
+            {
+                data: 'action',
+                name: 'action'
+            },
         ],
     })
 
-    function checkForm(type) {
+    // Memberikan attribute id pada form general
+    function giveIdForm(type) {
         $('#m_general form').attr('id', `f_${type}_general`)
+    }
+
+    // Memberikan
+    function checkInputId(data) {
+        if (data.form.find('input[name="id"]').length === 1) {
+            $('#f_edit_general input[name="id"]').remove()
+        }
+
+        $('#f_edit_general').append(`<input name="id" type="hidden" value="${data.res.id}">`)
     }
 
     /**
      * ==============================================
      * |---------------- ADD DATA ------------------|
      * ==============================================
-    */
+     */
     function add() {
-        checkForm('add')
+        giveIdForm('add')
+        $('#m_general .modal-body .title').text('Tambah Tipe Aset')
+
         $('#m_general').modal('show')
 
         $('#f_add_general').submit(function(e) {
@@ -50,19 +73,22 @@
      * ==============================================
      * |---------------- UPDATE DATA ------------form---|
      * ==============================================
-    */
+     */
     function edit(id) {
-        checkForm('edit')
+        giveIdForm('edit')
+        $('#m_general .modal-body .title').text('Edit Tipe Aset')
+
         $.ajax({
-            url: "{{ url('asset-type') }}/" + id +"/edit",
+            url: "{{ url('asset-type') }}/" + id + "/edit",
             success: (res) => {
+                console.log('edit id:', id);
                 const form = $('#f_edit_general');
+                const data = {form, res}
+
                 $('#general_submit').text('Kirim Data')
                 $('#m_general').modal('show')
 
-                if (form.find('input[name="id"]').length === 0) {
-                    $('#f_edit_general').append(`<input name="id" type="hidden" value="${res.id}">`)
-                }
+                checkInputId(data)
 
                 $('#f_edit_general input[name="name"]').val(res.name)
                 $('#f_edit_general input[name="describe"]').val(res.describe)
@@ -73,12 +99,12 @@
         $('#f_edit_general').submit(function(e) {
             e.preventDefault()
             const form = $('#f_edit_general');
-            const id = $('#f_edit_general input[name="id"]').val();
-            console.log(id);
+            let id = $('#f_edit_general input[name="id"]').val();
+            var url = "{{ url('asset-type') }}/" + id;
 
             $.ajax({
-                method: "PATCH",
-                url: "{{ url('asset-type') }}/"+id,
+                url,
+                method: "PUT",
                 data: $(this).serialize(),
                 success: (res) => {
                     $('#m_general').modal('hide')
@@ -88,15 +114,13 @@
             })
         })
     }
-
     // ============ END ==============
-
 
     /**
      * ==============================================
      * |---------------- DELETE DATA ---------------|
      * ==============================================
-    */
+     */
     function remove(id) {
         Swal.fire({
             icon: 'warning',
@@ -125,5 +149,5 @@
 
             }
         })
-    }// ============== END ===============
+    } // ============== END ===============
 </script>
