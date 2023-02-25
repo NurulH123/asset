@@ -44,7 +44,6 @@
         </div>
     </div>
 </div>
-@include('dashboard.asset_type.modals.add_asset_type_modal')
 @endsection
 
 @push('scripts_bottom')
