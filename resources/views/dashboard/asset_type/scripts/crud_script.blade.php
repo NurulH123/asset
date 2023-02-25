@@ -28,7 +28,7 @@
         $('#m_general form').attr('id', `f_${type}_general`)
     }
 
-    // Memberikan
+    // Mengecek dan menambahkan input hidden
     function checkInputId(data) {
         if (data.form.find('input[name="id"]').length === 1) {
             $('#f_edit_general input[name="id"]').remove()
@@ -37,6 +37,10 @@
         $('#f_edit_general').append(`<input name="id" type="hidden" value="${data.res.id}">`)
     }
 
+
+
+
+    
     /**
      * ==============================================
      * |---------------- ADD DATA ------------------|
