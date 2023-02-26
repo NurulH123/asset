@@ -35,7 +35,7 @@
                         </a>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
-                        <a href="{{ route('brand.index') }}" class="nk-menu-link">
+                        <a href="{{ route('supplier.index') }}" class="nk-menu-link">
                             <span class="nk-menu-icon">
                                 <i class="fa-solid fa-truck-fast" style="transform:scale(1.4)"></i>
                             </span>

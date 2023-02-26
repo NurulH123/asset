@@ -22,6 +22,13 @@
         body{
             overflow: hidden;
         }
+        .nk-content{
+            /* opacity: .5; */
+            position: relative;
+            background-size: cover;
+            background-position: right;
+            background-repeat: no-repeat;
+        }
         .asset-title h3{
             color: #FFED00;
             font-family: 'Lobster', cursive;
@@ -47,85 +54,65 @@
             <!-- wrap @s -->
             <div class="nk-wrap nk-wrap-nosidebar">
                 <!-- content @s -->
-                <div class="nk-content ">
-                    <div class="nk-split nk-split-page nk-split-md">
-                        <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white">
-                            <div class="nk-block nk-block-middle nk-auth-body">
-                                <!-- <div class="brand-logo pb-5">
-                                    <a href="html/index.html" class="logo-link">
-                                        <img class="logo-light logo-img logo-img-lg" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                                        <img class="logo-dark logo-img logo-img-lg" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
-                                    </a>
-                                </div> -->
-                                <div class="card card-bordered shadow">
-                                    <div class="card-body">
-                                        <div class="nk-block-head">
-                                            <div class="nk-block-head-content text-center mb-4 mt-2">
-                                                <div class="text-center asset-title">
-                                                    <h3 class="nk-block-title">Asset</h3>
-                                                    <h3 class="nk-block-title"> Management</h3>
-                                                </div>
-                                                {{-- <img src="{{ asset }}" alt=""> --}}
-                                            </div>
-                                        </div><!-- .nk-block-head -->
-                                        <form method="POST" action="{{ route('login') }}">
-                                            @csrf
-                                            <div class="form-group">
-                                                <div class="form-label-group">
-                                                    <label class="form-label" for="default-01">Email</label>
-                                                </div>
-                                                <div class="form-control-wrap">
-                                                    <input name="email" type="text" class="form-control form-control-lg" id="default-01" placeholder="Masukkan Email Anda">
-                                                </div>
-
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div><!-- .form-group -->
-                                            <div class="form-group">
-                                                <div class="form-label-group">
-                                                    <label class="form-label" for="password">Password</label>
-                                                </div>
-                                                <div class="form-control-wrap">
-                                                    <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                        <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                        <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                                    </a>
-                                                    <input name="password" type="password" class="form-control form-control-lg" id="password" placeholder="Masukkan Password">
-                                                    @error('password')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div><!-- .form-group -->
-                                            <div class="form-group">
-                                                <button class="btn btn-lg btn-primary btn-block">Login</button>
-                                            </div>
-                                        </form><!-- form -->
-                                        <div class="form-note-s2 pt-4 pb-2">
-                                            Belum Punya Akun? <a href="{{ url('/register') }}">Buat Akun</a>
+                {{-- <div class="nk-content" style="background-image: url({{ asset('assets/images/asset.jpg') }})"> --}}
+                    <div class="nk-content" style="background-color: #060047">
+                    {{-- <div class="overlay"></div> --}}
+                    <div class="nk-block nk-block-middle nk-auth-body  wide-xs">
+                        <div class="brand-logo pb-4 text-center">
+                        </div>
+                        <div class="card card-bordered">
+                            <div class="card-inner card-inner-lg shadow">
+                                <div class="nk-block-head">
+                                    <div class="nk-block-head-content text-center mb-4 mt-2">
+                                        <div class="text-center asset-title">
+                                            <h3 class="nk-block-title">Asset</h3>
+                                            <h3 class="nk-block-title"> Management</h3>
                                         </div>
                                     </div>
-                                </div>
-                            </div><!-- .nk-block -->
-                        </div><!-- .nk-split-content -->
-                        {{-- <div class="nk-split-content nk-split-stretch bg-abstract"> --}}
-                            <div class="position-relative">
-                                <div class="overlay"></div>
-                                <div class="bg-text text-white position-absolute">
-                                    <h3 class="display-5">Yuk Kelola Asset Anda!</h3>
-                                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                                    <p class="lead">
-                                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-                                    </p>
-                                </div>
-                                <img height="100%" src="{{ asset('assets/images/asset.jpg') }}" alt="">
+                                </div><!-- .nk-block-head -->
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <div class="form-label-group">
+                                            <label class="form-label" for="default-01">Email</label>
+                                        </div>
+                                        <div class="form-control-wrap">
+                                            <input name="email" type="text" class="form-control form-control-lg" id="default-01" placeholder="Masukkan Email Anda">
+                                        </div>
+
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div><!-- .form-group -->
+                                    <div class="form-group">
+                                        <div class="form-label-group">
+                                            <label class="form-label" for="password">Password</label>
+                                        </div>
+                                        <div class="form-control-wrap">
+                                            <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
+                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
+                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
+                                            </a>
+                                            <input name="password" type="password" class="form-control form-control-lg" id="password" placeholder="Masukkan Password">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div><!-- .form-group -->
+                                    <div class="form-group">
+                                        <button class="btn btn-lg btn-primary btn-block">Login</button>
+                                    </div>
+                                </form><!-- form -->
+                                {{-- <div class="form-note-s2 pt-4 pb-2">
+                                    Belum Punya Akun? <a href="{{ url('/register') }}">Buat Akun</a>
+                                </div> --}}
                             </div>
-                        {{-- </div><!-- .nk-split-content --> --}}
-                    </div><!-- .nk-split -->
+                        </div>
+                    </div>
                 </div>
                 <!-- wrap @e -->
             </div>

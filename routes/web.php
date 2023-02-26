@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +21,10 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
     Route::view('/dashboard', 'dashboard.dashboard.index');
 
     Route::resource('asset-type', 'AssetTypeController');
-
     Route::resource('brand', 'BrandController');
-
     Route::resource('location', 'LocationController');
-
     Route::resource('department', 'DepartmentController');
+    Route::resource('supplier', 'SupplierController');
 });
 
 Auth::routes();

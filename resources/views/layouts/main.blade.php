@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
+    {{-- <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}"> --}}
     <!-- Page Title  -->
     <title>@yield('title')</title>
     <!-- StyleSheets  -->
@@ -19,7 +19,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/css/libs/fontawesome-icons.css') }}">
     <script src="https://kit.fontawesome.com/6b5b180fe0.js" crossorigin="anonymous"></script>
-    
+
     @stack('style_css')
     @stack('scripts_top')
 </head>

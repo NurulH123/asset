@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        @include('components.default_nav')
+        {{-- @include('components.default_nav') --}}
 
         <main class="py-4">
             @yield('content')

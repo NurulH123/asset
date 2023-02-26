@@ -11,19 +11,6 @@
                     <img class="logo-dark logo-img" src="{{ asset('images/logo-dark.png') }}" srcset="images/logo-dark2x.png 2x" alt="logo-dark">
                 </a>
             </div><!-- .nk-header-brand -->
-            {{-- <div class="nk-header-news d-none d-xl-block">
-                <div class="nk-news-list">
-                    <a class="nk-news-item" href="#">
-                        <div class="nk-news-icon">
-                            <em class="icon ni ni-card-view"></em>
-                        </div>
-                        <div class="nk-news-text">
-                            <p>Do you know the latest update of 2022? <span> A overview of our is now available on YouTube</span></p>
-                            <em class="icon ni ni-external"></em>
-                        </div>
-                    </a>
-                </div>
-            </div><!-- .nk-header-news --> --}}
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
                     <li class="dropdown user-dropdown">
@@ -59,9 +46,15 @@
                                 </ul>
                             </div>
                             <div class="dropdown-inner">
-                                <ul class="link-list">
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <div class="link-list">
+                                        <button class="btn btn-danger btn-sm" type="submit"><em class="icon ni ni-signout"></em> Logout</button>
+                                    </div>
+                                </form>
+                                {{-- <ul class="link-list">
                                     <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
-                                </ul>
+                                </ul> --}}
                             </div>
                         </div>
                     </li><!-- .dropdown -->
