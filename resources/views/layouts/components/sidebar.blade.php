@@ -29,6 +29,32 @@
                         </a>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
+                        <a href="{{ route('brand.index') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
+                            <span class="nk-menu-text">Merek</span>
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
+                        <a href="{{ route('brand.index') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <i class="fa-solid fa-truck-fast" style="transform:scale(1.4)"></i>
+                            </span>
+                            <span class="nk-menu-text">Pemasok</span>
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
+                        <a href="{{ route('location.index') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-map"></em></span>
+                            <span class="nk-menu-text">Lokasi</span>
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
+                        <a href="{{ route('department.index') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><i class="fa-solid fa-city"></i></span>
+                            <span class="nk-menu-text">Departemen</span>
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
                         <a href="{{ route('asset-type.index') }}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                             <span class="nk-menu-text">Setting</span>

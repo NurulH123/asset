@@ -1,7 +1,7 @@
 <script>
 
-    var table = $('#t_asset_type').DataTable({
-        ajax: "{{ route('asset-type.index') }}",
+    var table = $('#t_department').DataTable({
+        ajax: "{{ route('department.index') }}",
         processing: true,
         serverSide: true,
         columns: [{
@@ -48,7 +48,7 @@
      */
     function add() {
         giveIdForm('add')
-        $('#m_general .modal-body .title').text('Tambah Tipe Aset')
+        $('#m_general .modal-body .title').text('Tambah Departemen')
 
         $('#m_general form')[0].reset()// Mengkosongkan form sebelum menambahkan data baru
         $('#m_general').modal('show')
@@ -60,7 +60,7 @@
             var form = $(this);
             $.ajax({
                 method: "POST",
-                url: "{{ route('asset-type.store') }}",
+                url: "{{ route('department.store') }}",
                 data: $(this).serialize(),
                 success: (res) => {
                     $('#general_submit').text('Simpan Data')
@@ -81,10 +81,10 @@
      */
     function edit(id) {
         giveIdForm('edit')
-        $('#m_general .modal-body .title').text('Edit Tipe Aset')
+        $('#m_general .modal-body .title').text('Edit Departemen')
 
         $.ajax({
-            url: "{{ url('asset-type') }}/" + id + "/edit",
+            url: "{{ url('department') }}/" + id + "/edit",
             success: (res) => {
                 console.log('edit id:', id);
                 const form = $('#f_edit_general');
@@ -105,7 +105,7 @@
             e.preventDefault()
             const form = $('#f_edit_general');
             let id = $('#f_edit_general input[name="id"]').val();
-            var url = "{{ url('asset-type') }}/" + id;
+            var url = "{{ url('department') }}/" + id;
 
             $.ajax({
                 url,
@@ -139,7 +139,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     method: "DELETE",
-                    url: "{{ url('asset-type') }}/" + id,
+                    url: "{{ url('department') }}/" + id,
                     success: (res) => {
                         Swal.fire({
                             icon: 'success',

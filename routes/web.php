@@ -17,9 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'auth.login')->middleware('guest');
 
 Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
-
     Route::view('/dashboard', 'dashboard.dashboard.index');
+    
     Route::resource('asset-type', 'AssetTypeController');
+
+    Route::resource('brand', 'BrandController');
+
+    Route::resource('location', 'LocationController');
+
+    Route::resource('department', 'DepartmentController');
 });
 
 Auth::routes();

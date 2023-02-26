@@ -16,7 +16,10 @@
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css?ver=3.1.2') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('assets/css/theme.css?ver=3.1.2') }}">
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('assets/css/libs/fontawesome-icons.css') }}">
+    <script src="https://kit.fontawesome.com/6b5b180fe0.js" crossorigin="anonymous"></script>
+    
     @stack('style_css')
     @stack('scripts_top')
 </head>
@@ -48,7 +51,6 @@
     <!-- JavaScript -->
     <script src="{{ asset('assets/libs/jquery-steps/lib/jquery-1.11.1.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> --}}
 
     <script src="{{ asset('assets/js/bundle.js?ver=3.1.2') }}"></script>
     <script src="{{ asset('assets/js/scripts.js?ver=3.1.2') }}"></script>

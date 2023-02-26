@@ -1,7 +1,7 @@
 <script>
 
-    var table = $('#t_asset_type').DataTable({
-        ajax: "{{ route('asset-type.index') }}",
+    var table = $('#t_location').DataTable({
+        ajax: "{{ route('location.index') }}",
         processing: true,
         serverSide: true,
         columns: [{
@@ -48,9 +48,9 @@
      */
     function add() {
         giveIdForm('add')
-        $('#m_general .modal-body .title').text('Tambah Tipe Aset')
+        $('#m_general .modal-body .title').text('Tambah Lokasi')
 
-        $('#m_general form')[0].reset()// Mengkosongkan form sebelum menambahkan data baru
+        $('#m_general form')[0].reset() // Mengkosongkan form sebelum menambahkan data baru
         $('#m_general').modal('show')
 
         $('#f_add_general').submit(function(e) {
@@ -60,7 +60,7 @@
             var form = $(this);
             $.ajax({
                 method: "POST",
-                url: "{{ route('asset-type.store') }}",
+                url: "{{ route('location.store') }}",
                 data: $(this).serialize(),
                 success: (res) => {
                     $('#general_submit').text('Simpan Data')
@@ -81,10 +81,10 @@
      */
     function edit(id) {
         giveIdForm('edit')
-        $('#m_general .modal-body .title').text('Edit Tipe Aset')
+        $('#m_general .modal-body .title').text('Edit Lokasi')
 
         $.ajax({
-            url: "{{ url('asset-type') }}/" + id + "/edit",
+            url: "{{ url('location') }}/" + id + "/edit",
             success: (res) => {
                 console.log('edit id:', id);
                 const form = $('#f_edit_general');
@@ -105,7 +105,7 @@
             e.preventDefault()
             const form = $('#f_edit_general');
             let id = $('#f_edit_general input[name="id"]').val();
-            var url = "{{ url('asset-type') }}/" + id;
+            var url = "{{ url('location') }}/" + id;
 
             $.ajax({
                 url,
@@ -139,7 +139,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     method: "DELETE",
-                    url: "{{ url('asset-type') }}/" + id,
+                    url: "{{ url('location') }}/" + id,
                     success: (res) => {
                         Swal.fire({
                             icon: 'success',
