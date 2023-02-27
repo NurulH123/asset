@@ -29,7 +29,7 @@
             background-position: right;
             background-repeat: no-repeat;
         }
-        .asset-title h3{
+        .asset-title-logo h3{
             color: #FFED00;
             font-family: 'Lobster', cursive;
             text-shadow: -1px 2px 1px #ccc;
@@ -64,7 +64,7 @@
                             <div class="card-inner card-inner-lg shadow">
                                 <div class="nk-block-head">
                                     <div class="nk-block-head-content text-center mb-4 mt-2">
-                                        <div class="text-center asset-title">
+                                        <div class="text-center asset-title-logo">
                                             <h3 class="nk-block-title">Asset</h3>
                                             <h3 class="nk-block-title"> Management</h3>
                                         </div>

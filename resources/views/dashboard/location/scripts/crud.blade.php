@@ -23,23 +23,6 @@
         ],
     })
 
-    // Memberikan attribute id pada form general
-    function giveIdForm(type) {
-        $('#m_general form').attr('id', `f_${type}_general`)
-    }
-
-    // Mengecek dan menambahkan input hidden
-    function checkInputId(data) {
-        if (data.form.find('input[name="id"]').length === 1) {
-            $('#f_edit_general input[name="id"]').remove()
-        }
-
-        $('#f_edit_general').append(`<input name="id" type="hidden" value="${data.res.id}">`)
-    }
-
-
-
-
 
     /**
      * ==============================================
@@ -48,6 +31,8 @@
      */
     function add() {
         giveIdForm('add')
+        checkInputId()
+
         $('#m_general .modal-body .title').text('Tambah Lokasi')
 
         $('#m_general form')[0].reset() // Mengkosongkan form sebelum menambahkan data baru
@@ -86,14 +71,12 @@
         $.ajax({
             url: "{{ url('location') }}/" + id + "/edit",
             success: (res) => {
-                console.log('edit id:', id);
                 const form = $('#f_edit_general');
-                const data = {form, res}
 
                 $('#general_submit').text('Kirim Data')
                 $('#m_general').modal('show')
 
-                checkInputId(data)
+                checkInputId(res)
 
                 $('#f_edit_general input[name="name"]').val(res.name)
                 $('#f_edit_general input[name="describe"]').val(res.describe)
@@ -109,7 +92,7 @@
 
             $.ajax({
                 url,
-                method: "PUT",
+                method: "PATCH",
                 data: $(this).serialize(),
                 success: (res) => {
                     $('#m_general').modal('hide')

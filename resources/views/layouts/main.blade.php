@@ -20,6 +20,14 @@
     <link rel="stylesheet" href="{{ asset('assets/css/libs/fontawesome-icons.css') }}">
     <script src="https://kit.fontawesome.com/6b5b180fe0.js" crossorigin="anonymous"></script>
 
+    <style>
+        .asset-title-logo h3{
+            color: #FFED00;
+            font-family: 'Lobster', cursive;
+            text-shadow: -1px 2px 1px #ccc;
+        }
+    </style>
+
     @stack('style_css')
     @stack('scripts_top')
 </head>
@@ -63,6 +71,7 @@
             },
         });
     </script>
+    @include('scripts_general')
 
     @stack('scripts_bottom')
 </body>

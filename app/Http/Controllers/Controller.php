@@ -18,8 +18,8 @@ class Controller extends BaseController
                 ->addColumn('action', function($q) {
                     $id = $q->id;
 
-                    return '<button onclick="edit('. $id .')" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit"><em class="icon ni ni-edit"></em> Ubah</button> '.
-                    '<button onclick="remove('. $id .')" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><em class="icon ni ni-trash"></em> Hapus</button>';
+                    return '<button onclick="edit('. $id .')" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Ubah"><em class="icon ni ni-edit"></em> Ubah</button> '.
+                    '<button onclick="remove('. $id .')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus"><em class="icon ni ni-trash"></em> Hapus</button>';
                 })
                 ->make(true);
     }
