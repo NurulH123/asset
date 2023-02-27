@@ -5,12 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Supplier;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupplierRequest;
-use App\Http\Controllers\Dashboard\Traits\Supplier as TraitSupplier;
 
 class SupplierController extends Controller
 {
-    use TraitSupplier;
-
     public function index()
     {
         $suppliers = Supplier::all();

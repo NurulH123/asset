@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
     Route::resource('location', 'LocationController');
     Route::resource('department', 'DepartmentController');
     Route::resource('supplier', 'SupplierController');
+    Route::resource('employee', 'EmployeeController');
 });
 
 Auth::routes();
