@@ -6,7 +6,8 @@
                 <h5 class="title mb-4"></h5>
                 <div class="nk-country-m_employee">
                     <form method="post">
-                        @csrf
+                        @csrf @method('PATCH')
+                        <input type="hidden" name="id">
                         <div class="form-group">
                             <label class="form-label" for="default-01">Nama<span class="text-danger">*</span></label>
                             <div class="form-control-wrap">
@@ -20,7 +21,7 @@
                                 @forelse ($departments as $department)
                                     <option value="{{ $department->id }}">{{ $department->name }}</option>
                                 @empty
-                                    <option value="">Departemen kosong</option>
+
                                 @endforelse
                             </select>
                         </div>
@@ -39,7 +40,7 @@
                                 <input name="phone" type="number" class="form-control" placeholder="contoh: 81378239xxx" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                         </div>
-                        <button id="supplier_submit" type="submit" class="btn btn-primary btn-sm">Simpan Data</button>
+                        <button id="employee_submit" type="submit" class="btn btn-primary btn-sm">Simpan Data</button>
                     </form>
                     <div class="note mt-3">
                         <b>Note :</b>

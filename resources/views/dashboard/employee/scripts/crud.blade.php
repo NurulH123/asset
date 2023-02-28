@@ -19,14 +19,40 @@
     }
 
     // Mengecek dan menambahkan input hidden
-    function checkInputId(data) {
-        if (data.form.find('input[name="id"]').length === 1) {
-            $('#f_edit_employee input[name="id"]').remove()
+    function checkInputId(res = null) {
+        console.log('check input id');
+        if ($('#m_employee form input[name="id"]').length > 0) {
+            $('#m_employee form input[name="id"]').remove()
         }
 
-        $('#f_edit_employee').append(`<input name="id" type="hidden" value="${data.res.id}">`)
+        if (res !== null) {
+            $('#m_employee form').prepend(`<input type="hidden" name="id" value=${res.id}>`)
+        }
     }
 
+    function netralSelectOption(res = null) {
+        var depSelect = $('#m_employee #department_id option')
+
+        for (let i = 0; i < depSelect.length; i++) {// Menetralkan select optional dari attribute selected
+            $(depSelect[i]).removeAttr('selected')
+        }
+        if (res !== null) {
+            $(`#m_employee #department_id option[value=${res.department_id}]`).attr("selected", "")
+        }
+    }
+
+    function checkMethodPost(type = 'edit') {
+        const postMethod = $('#m_employee form input[value="PATCH"]')
+
+        if (postMethod.length > 0) {
+            $('#m_employee form input[value="PATCH"]').remove()
+        }
+
+        if (type === 'edit') {
+            $('#m_employee form').prepend('<input type="hidden" name="_method" value="PATCH">')
+        }
+
+    }
 
     /**
      * ==============================================
@@ -34,37 +60,13 @@
      * ==============================================
      */
      function addEmployee() {
+        console.log('add func');
         giveIdForm('add')
+        netralSelectOption()
         $('#m_employee .modal-body .title').text('Tambah Karyawan')
 
         $('#m_employee form')[0].reset() // Mengkosongkan form sebelum menambahkan data baru
         $('#m_employee').modal('show')
-
-        // console.log($('#m_employee form'));
-        $('#f_add_employee').submit(function(e) {
-            e.preventDefault()
-
-            var form = $(this);
-            $.ajax({
-                method: "POST",
-                url: "{{ route('employee.store') }}",
-                data: $(this).serialize(),
-                success: (res) => {
-                    $('#employee_submit').text('Simpan Data')
-                    $('#m_employee').modal('hide')
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Data Telah Tersimpan',
-                        timer: 1000,
-                    })
-
-                    table.ajax.reload()
-                    form[0].reset()
-                }
-            })
-        })
     } // ================= END =================
 
 
@@ -80,37 +82,20 @@
         $.ajax({
             url: "{{ url('employee') }}/" + id + "/edit",
             success: (res) => {
-                const form = $('#f_edit_employee');
-                const data = {form, res}
+                netralSelectOption(res)
+                checkInputId(res)
+                checkMethodPost('edit')
 
                 $('#employee_submit').text('Kirim Data')
+                console.log($('#employee_submit'))
                 $('#m_employee').modal('show')
 
-                checkInputId(data)
-
-                for (const key in res) {
-                    $(`#f_edit_employee input[name=${key}]`).val(res[key])
-                }
+                $("#f_edit_employee input[name='id']").val(res.id)
+                $("#f_edit_employee input[name='name']").val(res.name)
+                $("#f_edit_employee input[name='department_id']").val(res.department_id)
+                $("#f_edit_employee input[name='email']").val(res.email)
+                $("#f_edit_employee input[name='phone']").val(res.phone)
             }
-        })
-
-        // Proses update
-        $('#f_edit_employee').submit(function(e) {
-            e.preventDefault()
-            const form = $('#f_edit_employee');
-            let id = $('#f_edit_employee input[name="id"]').val();
-            var url = "{{ url('employee') }}/" + id;
-
-            $.ajax({
-                url,
-                method: "PATCH",
-                data: $(this).serialize(),
-                success: (res) => {
-                    $('#m_employee').modal('hide')
-                    table.ajax.reload()
-                    form[0].reset()
-                }
-            })
         })
     }
     // ============ END ==============
@@ -149,4 +134,53 @@
             }
         })
     } // ============== END ===============
+
+
+    /**
+     * ==============================================
+     * |----------- PROSES MEMASUKKAN DATA ---------|
+     * ==============================================
+     */
+
+    // Menghapus input id jika formnya tambah
+    // Menghapus input method post jika formnya tambah
+    $('#m_employee').on('show.bs.modal', function(e) {
+        var formAdd = $('#f_add_employee')
+
+        if (formAdd.length > 0 ) {
+            checkMethodPost('add')
+            checkInputId()
+        }
+    })
+
+    // Saat form disubmit
+    $('#m_employee form').submit(function(e) {
+        e.preventDefault()
+
+        const form = $(this)
+        const methodPatch = $(this).find('input[value="PATCH"]')
+
+        let id = ""
+        let method = "POST"
+
+        if (methodPatch.length) {
+            id = $('#f_edit_employee input[name="id"]').val();
+            method = "PATCH"
+        }
+
+        // Proses pengiriman data ke server
+        $.ajax({
+            method,
+            url: "{{ url('employee') }}/" + id,
+            data: $(this).serialize(),
+            success: (res) => {
+                $('#m_employee').modal('hide')
+                table.ajax.reload()
+                form[0].reset()
+            }
+        })
+
+
+    })
+
 </script>
