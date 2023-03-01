@@ -1,5 +1,4 @@
 <script>
-
     var table = $('#t_brand').DataTable({
         ajax: "{{ route('brand.index') }}",
         processing: true,
@@ -31,41 +30,26 @@
      */
     function add() {
         giveIdForm('add')
+        checkMethodPost('add')
         checkInputId()
-        $('#m_general .modal-body .title').text('Tambah Merek')
+        $('#m_general .modal-body .title').text('Tambah Lokasi')
 
         $('#m_general form')[0].reset()// Mengkosongkan form sebelum menambahkan data baru
         $('#m_general').modal('show')
 
-        $('#f_add_general').submit(function(e) {
-            e.preventDefault()
-            $('#m_general').modal('hide')
-
-            var form = $(this);
-            $.ajax({
-                method: "POST",
-                url: "{{ route('brand.store') }}",
-                data: $(this).serialize(),
-                success: (res) => {
-                    $('#general_submit').text('Simpan Data')
-                    $('#m_general').modal('hide')
-
-                    table.ajax.reload()
-                    form[0].reset()
-                }
-            })
-        })
     } // ================= END =================
 
 
     /**
      * ==============================================
-     * |---------------- UPDATE DATA ------------form---|
+     * |---------------- UPDATE DATA ---------------|
      * ==============================================
      */
     function edit(id) {
         giveIdForm('edit')
-        $('#m_general .modal-body .title').text('Edit Merek')
+        checkMethodPost('edit')
+
+        $('#m_general .modal-body .title').text('Edit Lokasi')
 
         $.ajax({
             url: "{{ url('brand') }}/" + id + "/edit",
@@ -77,31 +61,12 @@
 
                 checkInputId(res)
 
+                $('#f_edit_general input[name="id"]').val(res.id)
                 $('#f_edit_general input[name="name"]').val(res.name)
                 $('#f_edit_general input[name="describe"]').val(res.describe)
             }
         })
-
-        // Proses update
-        $('#f_edit_general').submit(function(e) {
-            e.preventDefault()
-            const form = $('#f_edit_general');
-            let id = $('#f_edit_general input[name="id"]').val();
-            var url = "{{ url('brand') }}/" + id;
-
-            $.ajax({
-                url,
-                method: "PATCH",
-                data: $(this).serialize(),
-                success: (res) => {
-                    $('#m_general').modal('hide')
-                    table.ajax.reload()
-                    form[0].reset()
-                }
-            })
-        })
     }
-
     // ============ END ==============
 
     /**
@@ -138,4 +103,37 @@
             }
         })
     } // ============== END ===============
+
+
+    /**
+     * ==============================================
+     * |----------- PROSES MEMASUKKAN DATA ---------|
+     * ==============================================
+     */
+
+    // Proses megirim data ke server
+    $('#m_general form').submit(function(e) {
+        e.preventDefault()
+        const form = $(this)
+        const methodPatch = $(this).find('input[value="PATCH"]')
+
+        let id = ""
+        let method = "POST"
+
+        if (methodPatch.length) {
+            id = $('#f_edit_general input[name="id"]').val();
+            method = "PATCH"
+        }
+
+        $.ajax({
+            method,
+            url: "{{ url('brand') }}/" + id,
+            data: $(this).serialize(),
+            success: (res) => {
+                $('#m_general').modal('hide')
+                table.ajax.reload()
+                form[0].reset()
+            }
+        })
+    })
 </script>
