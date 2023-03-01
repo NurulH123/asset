@@ -36,7 +36,7 @@
 
         $('#m_general form')[0].reset()// Mengkosongkan form sebelum menambahkan data baru
         $('#m_general').modal('show')
-        
+
     } // ================= END =================
 
 
@@ -67,41 +67,6 @@
             }
         })
     }
-
-    $('#m_general').on('show.bs.modal', function() {
-        var formAdd = $('#f_add_general')
-
-        if (formAdd.length > 0 ) {
-            checkMethodPost('add')
-            checkInputId()
-        }
-    })
-
-    // Proses update
-    $('#m_general form').submit(function(e) {
-        e.preventDefault()
-        const form = $(this)
-        const methodPatch = $(this).find('input[value="PATCH"]')
-
-        let id = ""
-        let method = "POST"
-
-        if (methodPatch.length) {
-            id = $('#f_edit_general input[name="id"]').val();
-            method = "PATCH"
-        }
-
-        $.ajax({
-            method,
-            url: "{{ url('department') }}/" + id,
-            data: $(this).serialize(),
-            success: (res) => {
-                $('#m_general').modal('hide')
-                table.ajax.reload()
-                form[0].reset()
-            }
-        })
-    })
     // ============ END ==============
 
     /**
@@ -138,4 +103,37 @@
             }
         })
     } // ============== END ===============
+
+
+    /**
+     * ==============================================
+     * |----------- PROSES MEMASUKKAN DATA ---------|
+     * ==============================================
+     */
+
+    // Proses megirim data ke server
+    $('#m_general form').submit(function(e) {
+        e.preventDefault()
+        const form = $(this)
+        const methodPatch = $(this).find('input[value="PATCH"]')
+
+        let id = ""
+        let method = "POST"
+
+        if (methodPatch.length) {
+            id = $('#f_edit_general input[name="id"]').val();
+            method = "PATCH"
+        }
+
+        $.ajax({
+            method,
+            url: "{{ url('department') }}/" + id,
+            data: $(this).serialize(),
+            success: (res) => {
+                $('#m_general').modal('hide')
+                table.ajax.reload()
+                form[0].reset()
+            }
+        })
+    })
 </script>

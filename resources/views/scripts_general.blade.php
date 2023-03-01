@@ -35,17 +35,17 @@
      *
      * Menegecek setiap modal m_general muncul, apakah ada method PATCH.
      * Jika tidak ada dan formnya adalah edit, maka tambahkan method PATCH
+     * Menghapus input id jika formnya tambah
+     * Menghapus input method post jika formnya tambah
      *
      * */
-    $('#m_general').on('show.bs.modal', function(e) {
-        const method = $(`#m_general form input[value="PATCH"]`);
 
-        if (method.length > 0) {
-            $('#m_general form input[name="_method"]').remove()
-        }
+    $('#m_general').on('show.bs.modal', function() {
+        var formAdd = $('#f_add_general')
 
-        if ($('#f_edit_general').length > 0) {
-            $('#f_edit_general').prepend('<input type="hidden" name="_method" value="PATCH">')
+        if (formAdd.length > 0 ) {
+            checkMethodPost('add')
+            checkInputId()
         }
     })
 </script>
