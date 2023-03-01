@@ -1,5 +1,4 @@
 <script>
-
     var table = $('#t_department').DataTable({
         ajax: "{{ route('department.index') }}",
         processing: true,
@@ -31,30 +30,13 @@
      */
     function add() {
         giveIdForm('add')
+        checkMethodPost('add')
         checkInputId()
         $('#m_general .modal-body .title').text('Tambah Departemen')
 
         $('#m_general form')[0].reset()// Mengkosongkan form sebelum menambahkan data baru
         $('#m_general').modal('show')
-
-        $('#f_add_general').submit(function(e) {
-            e.preventDefault()
-            $('#m_general').modal('hide')
-
-            var form = $(this);
-            $.ajax({
-                method: "POST",
-                url: "{{ route('department.store') }}",
-                data: $(this).serialize(),
-                success: (res) => {
-                    $('#general_submit').text('Simpan Data')
-                    $('#m_general').modal('hide')
-
-                    table.ajax.reload()
-                    form[0].reset()
-                }
-            })
-        })
+        
     } // ================= END =================
 
 
@@ -65,6 +47,8 @@
      */
     function edit(id) {
         giveIdForm('edit')
+        checkMethodPost('edit')
+
         $('#m_general .modal-body .title').text('Edit Departemen')
 
         $.ajax({
@@ -77,31 +61,47 @@
 
                 checkInputId(res)
 
+                $('#f_edit_general input[name="id"]').val(res.id)
                 $('#f_edit_general input[name="name"]').val(res.name)
                 $('#f_edit_general input[name="describe"]').val(res.describe)
             }
         })
     }
 
-    // $('#m_general').on('show.bs.modal', function() {
-        // Proses update
-        $('#f_edit_general').submit(function(e) {
-            e.preventDefault()
-            const form = $('#f_edit_general');
-            let id = $('#f_edit_general input[name="id"]').val();
+    $('#m_general').on('show.bs.modal', function() {
+        var formAdd = $('#f_add_general')
 
-            $.ajax({
-                method: "PATCH",
-                url: "{{ url('department') }}/" + id,
-                data: $(this).serialize(),
-                success: (res) => {
-                    $('#m_general').modal('hide')
-                    table.ajax.reload()
-                    form[0].reset()
-                }
-            })
+        if (formAdd.length > 0 ) {
+            checkMethodPost('add')
+            checkInputId()
+        }
+    })
+
+    // Proses update
+    $('#m_general form').submit(function(e) {
+        e.preventDefault()
+        const form = $(this)
+        const methodPatch = $(this).find('input[value="PATCH"]')
+
+        let id = ""
+        let method = "POST"
+
+        if (methodPatch.length) {
+            id = $('#f_edit_general input[name="id"]').val();
+            method = "PATCH"
+        }
+
+        $.ajax({
+            method,
+            url: "{{ url('department') }}/" + id,
+            data: $(this).serialize(),
+            success: (res) => {
+                $('#m_general').modal('hide')
+                table.ajax.reload()
+                form[0].reset()
+            }
         })
-    // })
+    })
     // ============ END ==============
 
     /**

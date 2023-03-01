@@ -6,7 +6,9 @@
                 <h5 class="title mb-4"></h5>
                 <div class="nk-country-m_general">
                     <form method="post">
-                        @csrf
+                        @csrf @method('PATCH')
+                        <input type="hidden" name="id">
+
                         <div class="form-group">
                             <label class="form-label" for="default-01">Nama</label>
                             <div class="form-control-wrap">

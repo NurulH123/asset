@@ -30,6 +30,7 @@
         }
     }
 
+    // Untuk menghapus option yg memiliki attribut selected
     function netralSelectOption(res = null) {
         var depSelect = $('#m_employee #department_id option')
 

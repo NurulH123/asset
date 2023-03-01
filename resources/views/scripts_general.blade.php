@@ -17,6 +17,20 @@
         }
     }
 
+    // Check method post
+    function checkMethodPost(type = 'edit') {
+        const postMethod = $('#m_general form input[value="PATCH"]')
+
+        if (postMethod.length > 0) {
+            $('#m_general form input[value="PATCH"]').remove()
+        }
+
+        if (type === 'edit') {
+            $('#m_general form').prepend('<input type="hidden" name="_method" value="PATCH">')
+        }
+
+    }
+
     /**
      *
      * Menegecek setiap modal m_general muncul, apakah ada method PATCH.
