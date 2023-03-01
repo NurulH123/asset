@@ -31,32 +31,13 @@
      */
     function add() {
         giveIdForm('add')
+        checkMethodPost('add')
         checkInputId()
         $('#m_general .modal-body .title').text('Tambah Tipe Aset')
 
         $('#m_general form')[0].reset()// Mengkosongkan form sebelum menambahkan data baru
         $('#m_general').modal('show')
 
-        $('#f_add_general').submit(function(e) {
-            e.preventDefault()
-            $('#m_general').modal('hide')
-
-            console.log('add');
-            var form = $(this);
-            $.ajax({
-                method: "POST",
-                url: "{{ route('asset-type.store') }}",
-                data: $(this).serialize(),
-                success: (res) => {
-                    $('#general_submit').text('Simpan Data')
-                    $('#m_general').modal('hide')
-
-                    table.ajax.reload()
-                    form[0].reset()
-                    $('#m_general form').attr('id', `f_general`)
-                }
-            })
-        })
     } // ================= END =================
 
 
@@ -67,6 +48,8 @@
      */
     function edit(id) {
         giveIdForm('edit')
+        checkMethodPost('edit')
+
         $('#m_general .modal-body .title').text('Edit Tipe Aset')
 
         $.ajax({
@@ -79,31 +62,15 @@
 
                 checkInputId(res)
 
+                $('#f_edit_general input[name="id"]').val(res.id)
                 $('#f_edit_general input[name="name"]').val(res.name)
                 $('#f_edit_general input[name="describe"]').val(res.describe)
 
             }
         })
 
-        // Proses update
-        $('#f_edit_general').submit(function(e) {
-            e.preventDefault()
-            const form = $('#f_edit_general');
-            let id = $('#f_edit_general input[name="id"]').val();
-            var url = "{{ url('asset-type') }}/" + id;
-
-            $.ajax({
-                url,
-                method: "PATCH",
-                data: $(this).serialize(),
-                success: (res) => {
-                    $('#m_general').modal('hide')
-                    table.ajax.reload()
-                    form[0].reset()
-                }
-            })
-        })
     }
+
 
     // ============ END ==============
 
@@ -141,4 +108,34 @@
             }
         })
     } // ============== END ===============
+
+
+    // Proses update
+    $('#m_general form').submit(function(e) {
+        e.preventDefault()
+        const form = $(this)
+        const methodPatch = $(this).find('input[value="PATCH"]')
+
+        let id = ""
+        let method = "POST"
+
+        console.log(form);
+        console.log(methodPatch);
+        // console.log(methodPatch);
+        if (methodPatch.length) {
+            id = $('#f_edit_general input[name="id"]').val();
+            method = "PATCH"
+        }
+
+        $.ajax({
+            method,
+            url: "{{ url('asset-type') }}/" + id,
+            data: $(this).serialize(),
+            success: (res) => {
+                $('#m_general').modal('hide')
+                table.ajax.reload()
+                form[0].reset()
+            }
+        })
+    })
 </script>

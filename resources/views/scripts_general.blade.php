@@ -13,7 +13,7 @@
         }
 
         if (res !== null) {
-            $('#m_general form').append(`<input name="id" type="hidden" value="${res.id}">`)
+            $('#m_general form').prepend(`<input name="id" type="hidden" value="${res.id}">`)
         }
     }
 
