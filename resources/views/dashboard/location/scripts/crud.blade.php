@@ -1,3 +1,5 @@
+@include('scripts_general')
+
 <script>
     var table = $('#t_location').DataTable({
         ajax: "{{ route('location.index') }}",

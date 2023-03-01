@@ -71,7 +71,6 @@
             },
         });
     </script>
-    @include('scripts_general')
 
     @stack('scripts_bottom')
 </body>

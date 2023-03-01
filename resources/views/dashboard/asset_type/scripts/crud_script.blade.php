@@ -1,5 +1,6 @@
-<script>
+@include('scripts_general')
 
+<script>
     var table = $('#t_asset_type').DataTable({
         ajax: "{{ route('asset-type.index') }}",
         processing: true,

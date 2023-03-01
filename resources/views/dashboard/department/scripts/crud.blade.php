@@ -1,3 +1,5 @@
+@include('scripts_general')
+
 <script>
     var table = $('#t_department').DataTable({
         ajax: "{{ route('department.index') }}",
