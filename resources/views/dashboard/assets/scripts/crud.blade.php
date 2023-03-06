@@ -1,62 +1,74 @@
 <script>
-    var table = $('#t_supplier').DataTable({
-        ajax: "{{ route('supplier.index') }}",
+    var table = $('#t_assets').DataTable({
+        ajax: "{{ route('asset.index') }}",
         processing: true,
         serverSide: true,
         columns: [
             {data: 'DT_RowIndex',name: 'DT_RowIndex'},
+            {data: 'photo',name: 'photo'},
+            {data: 'asset_tag',name: 'asset_tag'},
             {data: 'name',name: 'name'},
-            {data: 'email',name: 'email'},
-            {data: 'phone',name: 'phone'},
-            {data: 'city',name: 'city'},
-            {data: 'address',name: 'address'},
+            {data: 'supplier.name',name: 'supplier.name'},
+            {data: 'brand.name',name: 'brand.name'},
+            {data: 'location.name',name: 'location.name'},
             {data: 'action',name: 'action'},
         ],
     })
 
     // Memberikan attribute id pada form general
     function giveIdForm(type) {
-        $('#m_supplier form').attr('id', `f_${type}_supplier`)
+        $('#m_asset form').attr('id', `f_${type}_asset`)
     }
 
     // Mengecek dan menambahkan input hidden
     function checkInputId(res = null) {
-        if ($('#m_supplier form input[name="id"]').length === 1) {
-            $('#f_edit_supplier input[name="id"]').remove()
+        console.log('check input id');
+        if ($('#m_asset form input[name="id"]').length > 0) {
+            $('#m_asset form input[name="id"]').remove()
         }
 
         if (res !== null) {
-            $('#f_edit_supplier').append(`<input name="id" type="hidden" value="${res.id}">`)
+            $('#m_asset form').prepend(`<input type="hidden" name="id" value=${res.id}>`)
+        }
+    }
+
+    // Untuk menghapus option yg memiliki attribut selected
+    function netralSelectOption(res = null) {
+        var depSelect = $('#m_asset #department_id option')
+
+        for (let i = 0; i < depSelect.length; i++) {// Menetralkan select optional dari attribute selected
+            $(depSelect[i]).removeAttr('selected')
+        }
+        if (res !== null) {
+            $(`#m_asset #department_id option[value=${res.department_id}]`).attr("selected", "")
         }
     }
 
     function checkMethodPost(type = 'edit') {
-        const postMethod = $('#m_supplier form input[value="PATCH"]')
+        const postMethod = $('#m_asset form input[value="PATCH"]')
 
         if (postMethod.length > 0) {
-            $('#m_supplier form input[value="PATCH"]').remove()
+            $('#m_asset form input[value="PATCH"]').remove()
         }
 
         if (type === 'edit') {
-            $('#m_supplier form').prepend('<input type="hidden" name="_method" value="PATCH">')
+            $('#m_asset form').prepend('<input type="hidden" name="_method" value="PATCH">')
         }
 
     }
-
-
 
     /**
      * ==============================================
      * |---------------- ADD DATA ------------------|
      * ==============================================
      */
-     function addSupplier() {
+     function addAsset() {
         giveIdForm('add')
-        $('#m_supplier .modal-body .title').text('Tambah Pemasok')
+        netralSelectOption()
+        $('#m_asset .modal-body .title').text('Tambah Aset')
 
-        $('#m_supplier form')[0].reset() // Mengkosongkan form sebelum menambahkan data baru
-        $('#m_supplier').modal('show')
-
+        $('#m_asset form')[0].reset() // Mengkosongkan form sebelum menambahkan data baru
+        $('#m_asset').modal('show')
     } // ================= END =================
 
 
@@ -67,25 +79,23 @@
      */
     function edit(id) {
         giveIdForm('edit')
-        $('#m_supplier .modal-body .title').text('Edit Pemasok')
+        $('#m_asset .modal-body .title').text('Edit Aset')
 
         $.ajax({
-            url: "{{ url('supplier') }}/" + id + "/edit",
+            url: "{{ url('asset') }}/" + id + "/edit",
             success: (res) => {
-                const form = $('#f_edit_supplier');
-
-                $('#supplier_submit').text('Kirim Data')
-                $('#m_supplier').modal('show')
-
+                netralSelectOption(res)
                 checkInputId(res)
                 checkMethodPost('edit')
 
+                $('#asset_submit').text('Kirim Data')
+                $('#m_asset').modal('show')
+
                 for (const key in res) {
-                    $(`#f_edit_supplier input[name=${key}]`).val(res[key])
+                    $(`#f_edit_asset input[name=${key}]`).val(res[key])
                 }
             }
         })
-
     }
     // ============ END ==============
 
@@ -107,7 +117,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     method: "DELETE",
-                    url: "{{ url('supplier') }}/" + id,
+                    url: "{{ url('asset') }}/" + id,
                     success: (res) => {
                         Swal.fire({
                             icon: 'success',
@@ -133,8 +143,8 @@
 
     // Menghapus input id jika formnya tambah
     // Menghapus input method post jika formnya tambah
-    $('#m_supplier').on('show.bs.modal', function(e) {
-        var formAdd = $('#f_add_supplier')
+    $('#m_asset').on('show.bs.modal', function(e) {
+        var formAdd = $('#f_add_asset')
 
         if (formAdd.length > 0 ) {
             checkMethodPost('add')
@@ -143,30 +153,37 @@
     })
 
     // Saat form disubmit
-    $('#m_supplier form').submit(function(e) {
+    $('#m_asset form').submit(function(e) {
         e.preventDefault()
 
-        const form = $(this)
+        const form = $(this)[0]
         const methodPatch = $(this).find('input[value="PATCH"]')
 
         let id = ""
         let method = "POST"
+        const data = new FormData(form)
+        console.log(data);
 
         if (methodPatch.length) {
-            id = $('#f_edit_supplier input[name="id"]').val();
+            id = $('#f_edit_asset input[name="id"]').val();
             method = "PATCH"
         }
 
         // Proses pengiriman data ke server
         $.ajax({
             method,
-            url: "{{ url('supplier') }}/" + id,
-            data: $(this).serialize(),
+            processData: false,
+            contentType: false,
+            url: "{{ url('asset') }}/" + id,
+            data: new FormData(form),
             success: (res) => {
-                $('#m_supplier').modal('hide')
+                $('#m_asset').modal('hide')
                 table.ajax.reload()
                 form[0].reset()
             }
         })
+
+
     })
+
 </script>

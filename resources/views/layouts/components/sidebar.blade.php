@@ -24,14 +24,35 @@
                         </a>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
+                        <a href="{{ url('asset') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <i class="fa-solid fa-file-lines" style="transform:scale(1.4)"></i>
+                            </span>
+                            <span class="nk-menu-text">Asset</span>
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    {{-- <li class="nk-menu-item">
+                        <a href="{{ route('asset-type.index')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <i class="fa-solid fa-toolbox" style="transform:scale(1.4);"></i>
+                            </span>
+                            <span class="nk-menu-text">Komponen</span>
+                        </a>
+                    </li><!-- .nk-menu-item --> --}}
+                    <li class="nk-menu-item">
                         <a href="{{ route('asset-type.index') }}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-tag"></em></span>
+                            <span class="nk-menu-icon">
+                                <i class="fa-solid fa-tag" style="transform:scale(1.4)"></i>
+                            </span>
                             <span class="nk-menu-text">Tipe Asset</span>
                         </a>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
                         <a href="{{ route('brand.index') }}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
+                            <span class="nk-menu-icon">
+                                {{-- <em class="icon ni ni-building"></em> --}}
+                                <i class="fa-solid fa-building" style="transform:scale(1.4)"></i>
+                            </span>
                             <span class="nk-menu-text">Merek</span>
                         </a>
                     </li><!-- .nk-menu-item -->
@@ -57,7 +78,7 @@
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
                         <a href="{{ route('employee.index') }}" class="nk-menu-link">
-                            <span class="nk-menu-icon"><i class="fa-solid fa-user" style="transform:scale(1.2)"></i></span>
+                            <span class="nk-menu-icon"><i class="fa-solid fa-user" style="transform:scale(1.4)"></i></span>
                             <span class="nk-menu-text">Karyawan</span>
                         </a>
                     </li><!-- .nk-menu-item -->

@@ -20,7 +20,6 @@
 
     // Mengecek dan menambahkan input hidden
     function checkInputId(res = null) {
-        console.log('check input id');
         if ($('#m_employee form input[name="id"]').length > 0) {
             $('#m_employee form input[name="id"]').remove()
         }
@@ -61,9 +60,7 @@
      * ==============================================
      */
      function addEmployee() {
-        console.log('add func');
         giveIdForm('add')
-        netralSelectOption()
         $('#m_employee .modal-body .title').text('Tambah Karyawan')
 
         $('#m_employee form')[0].reset() // Mengkosongkan form sebelum menambahkan data baru
@@ -88,7 +85,6 @@
                 checkMethodPost('edit')
 
                 $('#employee_submit').text('Kirim Data')
-                console.log($('#employee_submit'))
                 $('#m_employee').modal('show')
 
                 $("#f_edit_employee input[name='id']").val(res.id)
@@ -180,8 +176,6 @@
                 form[0].reset()
             }
         })
-
-
     })
 
 </script>

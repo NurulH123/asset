@@ -15,20 +15,20 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->string('asset_tag');
+            $table->string('asset_tag')->unique();
             $table->string('photo');
             $table->string('name');
             $table->foreignId('supplier_id')->constrained('suppliers');
             $table->foreignId('asset_type_id')->constrained('asset_types');
             $table->foreignId('brand_id')->constrained('brands');
             $table->foreignId('location_id')->constrained('locations');
-            $table->string('serial');
-            $table->integer('warranty');
+            $table->string('serial')->nullable();
+            $table->integer('warranty')->nullable();
             $table->integer('cost');
             $table->boolean('isCheck-in')->default(true);
             $table->string('status');
             $table->date('purchase_date');
-            $table->text('describe');
+            $table->text('describe')->nullable();
             $table->timestamps();
 
             /**

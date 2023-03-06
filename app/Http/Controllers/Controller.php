@@ -2,9 +2,10 @@
 
 namespace  App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -23,7 +24,39 @@ class Controller extends BaseController
                 })
                 ->make(true);
     }
-    
+
+    protected function simpleThreeAction($data)
+    {
+        return datatables($data)
+                ->addIndexColumn()
+                ->editColumn('photo', function($q) {
+                    $photoLink = $q->photo;
+
+                    return '<img
+                                width="50px"
+                                class="card-img-top img-fluid rounded avatar-lg"
+                                src="'.asset($photoLink).'"
+                                alt="Images"
+                            >';
+                })
+                ->addColumn('action', function($q) {
+                    $id = $q->id;
+
+                    return '<div class="form-control-wrap">
+                                <select class="form-select js-select2" name="location_id" id="location_id">
+                                    <option value="">...</option>
+                                    <option value="checkout">Checkout</option>
+                                    <hr>
+                                    <option onclick="detail()" value="detail">Detail</option>
+                                    <option onclick="edit()" value="edit">Edit</option>
+                                    <option onclick="remove()" value="delete">Delete</option>
+                                </select>
+                            </div>';
+                })
+                ->rawColumns(['action', 'photo'])
+                ->make(true);
+    }
+
     protected function phoneFormat($number)
     {
         $phoneSplit = str_split($number);
@@ -47,5 +80,20 @@ class Controller extends BaseController
         }
 
         return $phone;
+    }
+
+    public function convertFile(Request $request, $name)
+    {
+        if ($request->file($name)) {
+            $file = $request->file($name);
+            $filename = date('YmdHis').'.'.$file->getClientOriginalExtension();
+            $path = 'public/photo/'.$name; // Nama yg tersimpan di folder storage
+
+            $file->storeAs($path, $filename);
+
+            return 'storage/photo/'.$name.'/'.$filename; // Nama yg tersimpan di database
+        }
+
+        return 'assets/images/noimage.png';
     }
 }
