@@ -62,7 +62,7 @@
         $('#asset_photo').change(function(e) {
            var reader = new FileReader();
            reader.onload = function(e) {
-                $('#showPhoto').attr('src', e.target.result)
+                $('#photo').attr('src', e.target.result)
            }
            reader.readAsDataURL(e.target.files[0])
         })

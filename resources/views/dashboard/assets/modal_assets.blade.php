@@ -13,7 +13,7 @@
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Nama<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
-                                        <input name="name" type="text" class="form-control" id="default-01" placeholder="Masukkan Nama">
+                                        <input id="name" name="name" type="text" class="form-control" id="default-01">
                                     </div>
                                 </div>
                             </div>
@@ -21,7 +21,7 @@
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">No Serial</label>
                                     <div class="input-group">
-                                        <input name="serial" type="text" class="form-control" placeholder="Nomor Serial Barang" aria-label="Serial" aria-describedby="basic-addon1">
+                                        <input id="serial" name="serial" type="text" class="form-control" placeholder="Nomor Serial Barang" aria-label="Serial" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                             </div>
@@ -31,13 +31,13 @@
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Harga Beli<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
-                                        <input name="cost" type="text" class="form-control" id="default-01" placeholder="Masukkan Nama">
+                                        <input id="cost" name="cost" type="text" class="form-control" id="default-01">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Garansi</label>
                                     <div class="form-control-wrap">
-                                        <input name="warranty" type="number" class="form-control" id="default-01" placeholder="Masukkan Nama">
+                                        <input id="warranty" name="warranty" type="number" class="form-control" id="default-01">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -46,7 +46,7 @@
                                         <div class="form-icon form-icon-right">
                                             <em class="icon ni ni-calendar-alt"></em>
                                         </div>
-                                        <input name="status_date" type="text" class="form-control date-picker">
+                                        <input id="purchase_date" name="purchase_date" type="text" class="form-control date-picker">
                                     </div>
                                     <div class="form-note">tanggal format <code>mm/dd/yyyy</code></div>
                                 </div>
@@ -54,7 +54,7 @@
                                     <label for="asset_photo" class="form-label">Gambar</label>
                                     <div class="col-sm-8">
                                         <img
-                                            id="showPhoto"
+                                            id="photo"
                                             class="card-img-top img-fluid rounded avatar-lg"
                                             src="{{ asset('/assets/images/noimage.png') }}"
                                             alt="Card image cap"
@@ -70,10 +70,10 @@
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Pemasok<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
-                                        <select class="form-select js-select2" name="supplier_id" id="supplier_id">
+                                        <select class="form-control" name="supplier_id" id="supplier_id">
                                             @isset($suppliers)
-                                            @foreach ($suppliers as $supplier)
-                                                    <option value=""></option>
+                                                <option value=""></option>
+                                                @foreach ($suppliers as $supplier)
                                                     <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                                 @endforeach
                                             @endisset
@@ -83,10 +83,10 @@
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Merek<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
-                                        <select class="form-select js-select2" name="brand_id" id="brand_id">
+                                        <select class="form-control" name="brand_id" id="brand_id">
                                             @isset($brands)
+                                                <option value=""></option>
                                                 @foreach ($brands as $brand)
-                                                    <option value=""></option>
                                                     <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                                 @endforeach
                                             @endisset
@@ -96,10 +96,10 @@
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Lokasi<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
-                                        <select class="form-select js-select2" name="location_id" id="location_id">
+                                        <select class="form-control" name="location_id" id="location_id">
                                             @isset($locations)
+                                                <option value=""></option>
                                                 @foreach ($locations as $location)
-                                                    <option value=""></option>
                                                     <option value="{{ $location->id }}">{{ $location->name }}</option>
                                                 @endforeach
                                             @endisset
@@ -109,10 +109,10 @@
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Tipe Aset<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
-                                        <select class="form-select js-select2" name="asset_type_id" id="asset_type_id">
+                                        <select class="form-control" name="asset_type_id" id="asset_type_id">
                                             @isset($asset_types)
+                                                <option value=""></option>
                                                 @foreach ($asset_types as $type)
-                                                    <option value=""></option>
                                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                                 @endforeach
                                             @endisset
@@ -122,7 +122,7 @@
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Status<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
-                                        <select class="form-select js-select2" name="status" id="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value="">Pilih Status</option>
                                             <option value="ready">Siap Digunakan</option>
                                             <option value="pending">Pending</option>

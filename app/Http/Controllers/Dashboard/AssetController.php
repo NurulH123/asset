@@ -11,6 +11,7 @@ use App\Models\Brand;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Supplier;
+use Illuminate\Support\Facades\Storage;
 
 class AssetController extends Controller
 {
@@ -58,9 +59,18 @@ class AssetController extends Controller
         return $asset;
     }
 
-    public function update(AssetRequest $request, Asset $asset)
+    public function update(Request $request, Asset $asset)
     {
-        return $asset->update($request->all());
+        $data = $request->all();
+        if ($request->file('asset_photo')) {
+            $photoname = explode('/', $asset->photo)[3];
+            $stoPath = 'public/photo/asset_photo/'.$photoname;
+            Storage::delete($stoPath); // Menghapus photo yg sebelumnya
+
+            $data['photo'] = $this->convertFile($request, 'asset_photo');
+        }
+
+        return $asset->update($data);
     }
 
     public function destroy(Asset $asset)

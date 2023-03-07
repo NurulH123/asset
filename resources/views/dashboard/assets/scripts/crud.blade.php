@@ -17,14 +17,15 @@
     }
 
     // Untuk menghapus option yg memiliki attribut selected
-    function netralSelectOption(res = null) {
-        var depSelect = $('#m_asset #department_id option')
+    function netralSelectOption(val = null, key = null) {
+        var depSelect = $(`#m_asset #${key} option`)
 
         for (let i = 0; i < depSelect.length; i++) {// Menetralkan select optional dari attribute selected
             $(depSelect[i]).removeAttr('selected')
         }
-        if (res !== null) {
-            $(`#m_asset #department_id option[value=${res.department_id}]`).attr("selected", "")
+        if (val !== null) {
+            $(`#m_asset #${key} option[value=${val}]`).attr("selected", "")
+            $(`#m_asset #${key}`).attr("value", val)
         }
     }
 
@@ -68,7 +69,6 @@
         $.ajax({
             url: "{{ url('asset') }}/" + id + "/edit",
             success: (res) => {
-                netralSelectOption(res)
                 checkInputId(res)
                 checkMethodPost('edit')
 
@@ -76,7 +76,15 @@
                 $('#m_asset').modal('show')
 
                 for (const key in res) {
-                    $(`#f_edit_asset input[name=${key}]`).val(res[key])
+                    let target = $(`#m_asset form #${key}`)[0]
+
+                    if (target !== undefined && target.tagName === 'SELECT') {
+                        netralSelectOption(res[key], key)
+                    } else if (target !== undefined && target.tagName === 'IMG') {
+                        $(`#m_asset #${key}`).attr('src', res.photo)
+                    } else {
+                        $(target).val(res[key])
+                    }
                 }
             }
         })
@@ -149,6 +157,7 @@
 
         if (methodPatch.length) {
             id = $('#f_edit_asset input[name="id"]').val();
+            // Jika mengirimkan data dg FormData dan method ajaxnya adl PATCH, maka datanya akan selalu kosong
             // method = "PATCH"
         }
 
