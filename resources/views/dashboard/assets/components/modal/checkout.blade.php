@@ -25,21 +25,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label" for="default-01">Checkout ke<span class="text-danger">*</span></label>
+                            <div class="form-group" id="employee_id">
+                                <label class="form-label" for="default-01">Checkout Ke<span class="text-danger">*</span></label>
                                 <div class="form-control-wrap">
-                                    <select class="form-select js-select2" name="employee_id" id="employee_id">
+                                    <select class="form-control" name="employee_id">
                                         @isset($employees)
+                                            <option value=""></option>
                                             @foreach ($employees as $employee)
-                                                <option value=""></option>
                                                 <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                             @endforeach
                                         @endisset
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label id="status_date" class="form-label">Tanggal Checkout</label>
+                            <div class="form-group" id="status_date">
+                                <label class="form-label">Tanggal Checkout</label>
                                 <div class="form-control-wrap">
                                     <div class="form-icon form-icon-right">
                                         <em class="icon ni ni-calendar-alt"></em>

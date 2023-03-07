@@ -41,11 +41,12 @@ class Controller extends BaseController
                 })
                 ->addColumn('action', function($q) {
                     $id = $q->id;
+
                     $event = $q->isCheckin ? "checkout(".$id.")" : "checkin(".$id.")";
                     $textEvent = $q->isCheckin ? "Checkout" : "Check-in";
-                    $btnColor = $q->isCheckin ? "success" : "info";
+                    $btnColor = $q->isCheckin ? "warning" : "info";
 
-                    return '<div class="nk-footer-links btn btn-warning btn-md">
+                    return '<div class="nk-footer-links btn btn-success btn-md">
                                 <ul class="nav nav-sm">
                                     <li class="nav-item dropdown">
                                         <a href="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link text-base" data-bs-toggle="dropdown" data-offset="0,1"><span>...</span></a>
@@ -53,7 +54,7 @@ class Controller extends BaseController
                                             <ul class="language-list">
                                                 <li>
                                                     <div class="d-flex justify-content-center pt-2">
-                                                        <button onclick='.$event.' type="button" class="btn btn-'.$btnColor.' btn-lg">'.$textEvent.'</button>
+                                                        <button onclick="'.$event.'" type="button" class="btn btn-'.$btnColor.' btn-lg">'.$textEvent.'</button>
                                                     </div>
                                                     <hr>
                                                 </li>
