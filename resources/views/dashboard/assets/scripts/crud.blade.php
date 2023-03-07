@@ -1,20 +1,4 @@
 <script>
-    var table = $('#t_assets').DataTable({
-        ajax: "{{ route('asset.index') }}",
-        processing: true,
-        serverSide: true,
-        columns: [
-            {data: 'DT_RowIndex',name: 'DT_RowIndex'},
-            {data: 'photo',name: 'photo'},
-            {data: 'asset_tag',name: 'asset_tag'},
-            {data: 'name',name: 'name'},
-            {data: 'supplier.name',name: 'supplier.name'},
-            {data: 'brand.name',name: 'brand.name'},
-            {data: 'location.name',name: 'location.name'},
-            {data: 'action',name: 'action'},
-        ],
-    })
-
     // Memberikan attribute id pada form general
     function giveIdForm(type) {
         $('#m_asset form').attr('id', `f_${type}_asset`)
@@ -150,6 +134,7 @@
             checkMethodPost('add')
             checkInputId()
         }
+
     })
 
     // Saat form disubmit
@@ -162,7 +147,6 @@
         let id = ""
         let method = "POST"
         const data = new FormData(form)
-        console.log(data);
 
         if (methodPatch.length) {
             id = $('#f_edit_asset input[name="id"]').val();
@@ -179,11 +163,10 @@
             success: (res) => {
                 $('#m_asset').modal('hide')
                 table.ajax.reload()
-                form[0].reset()
+
+                form.reset()
             }
         })
-
-
     })
 
 </script>

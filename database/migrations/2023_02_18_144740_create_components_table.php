@@ -25,7 +25,7 @@ class CreateComponentsTable extends Migration
             $table->integer('quantity');
             $table->integer('available_quantity');
             $table->integer('cost');
-            $table->boolean('isCheck-in')->default(true);
+            $table->boolean('isCheckin')->default(true);
             $table->string('status');
             $table->date('purchase_date');
             $table->text('describe');

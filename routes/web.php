@@ -21,6 +21,10 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
     Route::view('/dashboard', 'dashboard.dashboard.index');
 
     Route::resource('asset', 'AssetController');
+
+    Route::post('asset-transaction/{asset}', 'AssetTransactionController@store');
+    Route::get('checkout/{asset}', 'AssetTransactionController@checkout');
+
     Route::resource('asset-type', 'AssetTypeController');
     Route::resource('brand', 'BrandController');
     Route::resource('location', 'LocationController');

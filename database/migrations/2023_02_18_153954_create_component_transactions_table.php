@@ -18,15 +18,19 @@ class CreateComponentTransactionsTable extends Migration
             $table->foreignId('asset_id')->constrained('assets');
             $table->foreignId('component_id')->constrained('components');
             $table->integer('quantity');
+            $table->date('status_date');
             $table->string('status');
             $table->timestamps();
 
             /**
              * ===================================================================
-             * |-------------------------- CATATAN KECIL -------------------------
+             * |-------------------------- CATATAN KECIL ------------------------|
              * ===================================================================
              *
              *  # QUANTITY = Jumlah yg dipakai untuk satu jenis asset
+             *
+             *  # STATUS_DATE = Tanggal saat di checkout atau check-in
+             *                  - Kata status_date mengacu pd status (check-in atau checkout) dan date yg berarti tanggal
              *
              *  # STATUS = - checkout
              *             - check-in

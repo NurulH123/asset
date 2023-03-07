@@ -41,10 +41,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" for="default-01">Tanggal Beli<span class="text-danger">*</span></label>
+                                    <label class="form-label">Tanggal Beli<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
-                                        <input name="date" type="date" class="form-control" id="default-01" placeholder="Masukkan Nama">
+                                        <div class="form-icon form-icon-right">
+                                            <em class="icon ni ni-calendar-alt"></em>
+                                        </div>
+                                        <input name="status_date" type="text" class="form-control date-picker">
                                     </div>
+                                    <div class="form-note">tanggal format <code>mm/dd/yyyy</code></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="asset_photo" class="form-label">Gambar</label>

@@ -41,16 +41,41 @@ class Controller extends BaseController
                 })
                 ->addColumn('action', function($q) {
                     $id = $q->id;
+                    $event = $q->isCheckin ? "checkout(".$id.")" : "checkin(".$id.")";
+                    $textEvent = $q->isCheckin ? "Checkout" : "Check-in";
+                    $btnColor = $q->isCheckin ? "success" : "info";
 
-                    return '<div class="form-control-wrap">
-                                <select class="form-select js-select2" name="location_id" id="location_id">
-                                    <option value="">...</option>
-                                    <option value="checkout">Checkout</option>
-                                    <hr>
-                                    <option onclick="detail()" value="detail">Detail</option>
-                                    <option onclick="edit()" value="edit">Edit</option>
-                                    <option onclick="remove()" value="delete">Delete</option>
-                                </select>
+                    return '<div class="nk-footer-links btn btn-warning btn-md">
+                                <ul class="nav nav-sm">
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link text-base" data-bs-toggle="dropdown" data-offset="0,1"><span>...</span></a>
+                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                                            <ul class="language-list">
+                                                <li>
+                                                    <div class="d-flex justify-content-center pt-2">
+                                                        <button onclick='.$event.' type="button" class="btn btn-'.$btnColor.' btn-lg">'.$textEvent.'</button>
+                                                    </div>
+                                                    <hr>
+                                                </li>
+                                                <li>
+                                                    <a class="language-item">
+                                                        <span class="language-name">Detail</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a onclick="edit('.$id.')" class="language-item">
+                                                        <span class="language-name">Edit</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a onclick="remove('.$id.')" class="language-item">
+                                                        <span class="language-name">Delete</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>';
                 })
                 ->rawColumns(['action', 'photo'])

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AssetRequest;
 use App\Models\AssetType;
 use App\Models\Brand;
+use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Supplier;
 
@@ -16,16 +17,13 @@ class AssetController extends Controller
     public function index()
     {
         $assets = Asset::with(['brand', 'supplier', 'location'])->get();
-        $asset_types = AssetType::all();
-        $brands = Brand::all();
-        $locations = Location::all();
-        $suppliers = Supplier::all();
 
         $datas = [
-            'suppliers'     => $suppliers,
-            'brands'        => $brands,
-            'locations'     => $locations,
-            'asset_types'   => $asset_types
+            'suppliers'     => Supplier::all(),
+            'brands'        => Brand::all(),
+            'locations'     => Location::all(),
+            'asset_types'   => AssetType::all(),
+            'employees'     => Employee::all(),
         ];
 
         if (request()->ajax()) {

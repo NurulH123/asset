@@ -27,7 +27,7 @@ class CreateAssetTransactionsTable extends Migration
              * ===================================================================
              *
              *  # STATUS_DATE = Tanggal saat di checkout atau check-in
-             *
+             *                  - Kata status_date mengacu pd status (check-in atau checkout) dan date yg berarti tanggal
              *  # STATUS = - checkout
              *             - check-in
              *

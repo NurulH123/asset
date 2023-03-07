@@ -29,4 +29,9 @@ class Asset extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+
+    public function transaction()
+    {
+        return $this->hasMany(AssetTransaction::class);
+    }
 }

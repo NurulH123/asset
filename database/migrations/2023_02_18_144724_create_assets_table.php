@@ -25,7 +25,7 @@ class CreateAssetsTable extends Migration
             $table->string('serial')->nullable();
             $table->integer('warranty')->nullable();
             $table->integer('cost');
-            $table->boolean('isCheck-in')->default(true);
+            $table->boolean('isCheckin')->default(true);
             $table->string('status');
             $table->date('purchase_date');
             $table->text('describe')->nullable();

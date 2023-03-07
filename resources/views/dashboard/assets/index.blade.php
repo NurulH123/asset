@@ -49,10 +49,14 @@
     </div>
 </div>
 @include('dashboard.assets.modal_assets')
+@include('dashboard.assets.components.modal.checkout')
 @endsection
 
 @push('scripts_bottom')
+    @include('dashboard.assets.scripts.datatable')
     @include('dashboard.assets.scripts.crud')
+    @include('dashboard.assets.scripts.asset_transaction')
+
     <script>
     $(document).ready(function() {
         $('#asset_photo').change(function(e) {

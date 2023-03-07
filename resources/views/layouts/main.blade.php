@@ -16,6 +16,7 @@
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css?ver=3.1.2') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('assets/css/theme.css?ver=3.1.2') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/css/libs/fontawesome-icons.css') }}">
     <script src="https://kit.fontawesome.com/6b5b180fe0.js" crossorigin="anonymous"></script>
