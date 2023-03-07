@@ -58,7 +58,7 @@
 
     /**
      * ==============================================
-     * |---------------- UPDATE DATA ------------form---|
+     * |---------------- UPDATE DATA ---------------|
      * ==============================================
      */
     function edit(id) {
@@ -146,11 +146,10 @@
 
         let id = ""
         let method = "POST"
-        const data = new FormData(form)
 
         if (methodPatch.length) {
             id = $('#f_edit_asset input[name="id"]').val();
-            method = "PATCH"
+            // method = "PATCH"
         }
 
         // Proses pengiriman data ke server

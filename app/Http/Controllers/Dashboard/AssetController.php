@@ -35,7 +35,6 @@ class AssetController extends Controller
 
     public function store(Request $request)
     {
-
         $type = AssetType::findOrFail($request->asset_type_id);
         $expl = explode(' ', $type->name);
         $split = str_split($expl[0], 3)[0];
@@ -61,7 +60,6 @@ class AssetController extends Controller
 
     public function update(AssetRequest $request, Asset $asset)
     {
-
         return $asset->update($request->all());
     }
 
