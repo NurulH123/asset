@@ -31,14 +31,14 @@
                             <span class="nk-menu-text">Asset</span>
                         </a>
                     </li><!-- .nk-menu-item -->
-                    {{-- <li class="nk-menu-item">
-                        <a href="{{ route('asset-type.index')}}" class="nk-menu-link">
+                    <li class="nk-menu-item">
+                        <a href="{{ route('component.index')}}" class="nk-menu-link">
                             <span class="nk-menu-icon">
                                 <i class="fa-solid fa-toolbox" style="transform:scale(1.4);"></i>
                             </span>
                             <span class="nk-menu-text">Komponen</span>
                         </a>
-                    </li><!-- .nk-menu-item --> --}}
+                    </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
                         <a href="{{ route('asset-type.index') }}" class="nk-menu-link">
                             <span class="nk-menu-icon">

@@ -61,8 +61,8 @@
     <script src="{{ asset('assets/libs/jquery-steps/lib/jquery-1.11.1.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-    <script src="{{ asset('assets/js/bundle.js?ver=3.1.2') }}"></script>
-    <script src="{{ asset('assets/js/scripts.js?ver=3.1.2') }}"></script>
+    <script src="./assets/js/bundle.js?ver=3.1.2"></script>
+    <script src="./assets/js/scripts.js?ver=3.1.2"></script>
     <script src="{{ asset('assets/js/charts/gd-default.js?ver=3.1.2') }}"></script>
     <script>
         // Ajax send csrf token
