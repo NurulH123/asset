@@ -123,7 +123,7 @@
                                     <label class="form-label" for="default-01">Status<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
                                         <select class="form-control" name="status" id="status">
-                                            <option value="">Pilih Status</option>
+                                            <option value=""></option>
                                             <option value="ready">Siap Digunakan</option>
                                             <option value="pending">Pending</option>
                                             <option value="archived">Diarshipkan</option>

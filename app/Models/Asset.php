@@ -34,4 +34,9 @@ class Asset extends Model
     {
         return $this->hasMany(AssetTransaction::class);
     }
+
+    public function maintenance()
+    {
+        return $this->hasMany(Maintenance::class);
+    }
 }

@@ -45,7 +45,7 @@ class AssetController extends Controller
         $label = strtoupper($split);
 
         $data = $request->all();
-        $data['asset_tag'] = $label.date('YdmHis').rand(1000,9999);
+        $data['asset_tag'] = $label.date('ymHis').rand(10,99);
         $data['photo'] = $this->convertFile($request, 'asset_photo');
         $data['purchase_date'] = date('Y-m-d', strtotime($request->purchase_date));
 

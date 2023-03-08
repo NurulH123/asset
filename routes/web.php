@@ -56,6 +56,14 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      *  |---------------- ASSET TYPE --------------|
      *  ============================================
      */
+    Route::resource('maintenance', 'MaintenanceController');
+
+
+    /**
+     *  ============================================
+     *  |---------------- ASSET TYPE --------------|
+     *  ============================================
+     */
     Route::resource('asset-type', 'AssetTypeController');
 
     /**

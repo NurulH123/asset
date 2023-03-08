@@ -40,6 +40,14 @@
                         </a>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
+                        <a href="{{ route('maintenance.index')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <i class="fa-solid fa-screwdriver-wrench" style="transform:scale(1.4);"></i>
+                            </span>
+                            <span class="nk-menu-text">Maintenance</span>
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
                         <a href="{{ route('asset-type.index') }}" class="nk-menu-link">
                             <span class="nk-menu-icon">
                                 <i class="fa-solid fa-tag" style="transform:scale(1.4)"></i>

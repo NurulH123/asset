@@ -17,6 +17,7 @@ class CreateMaintenancesTable extends Migration
             $table->id();
             $table->foreignId('asset_id')->constrained('assets');
             $table->foreignId('supplier_id')->constrained('suppliers');
+            $table->foreignId('asset_type_id')->constrained('asset_types');
             $table->string('type');
             $table->date('start_date');
             $table->date('end_date');
