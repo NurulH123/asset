@@ -28,13 +28,13 @@ class AssetController extends Controller
         ];
 
         if (request()->ajax()) {
-            return $this->simpleThreeAction($assets);
+            return $this->simpleThreeAction($assets, 'asset');
         }
 
         return view('dashboard.assets.index', $datas);
     }
 
-    public function store(Request $request)
+    public function store(AssetRequest $request)
     {
         $type = AssetType::findOrFail($request->asset_type_id);
         $expl = explode(' ', $type->name);
@@ -47,7 +47,7 @@ class AssetController extends Controller
         $data = $request->all();
         $data['asset_tag'] = $label.date('YdmHis').rand(1000,9999);
         $data['photo'] = $this->convertFile($request, 'asset_photo');
-        $data['purchase_date'] = date('Y-m-d', $request->purchase_date);
+        $data['purchase_date'] = date('Y-m-d', strtotime($request->purchase_date));
 
         $addType = Asset::create($data);
 

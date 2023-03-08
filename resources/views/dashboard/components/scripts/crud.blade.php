@@ -72,9 +72,10 @@
                 checkInputId(res)
                 checkMethodPost('edit')
 
-                $('#asset_submit').text('Kirim Data')
+                $('#component_submit').text('Kirim Data')
                 $('#m_component').modal('show')
 
+                console.log(res);
                 for (const key in res) {
                     let target = $(`#m_component form #${key}`)[0]
 
@@ -136,7 +137,7 @@
     // Menghapus input id jika formnya tambah
     // Menghapus input method post jika formnya tambah
     $('#m_component').on('show.bs.modal', function(e) {
-        var formAdd = $('#f_add_asset')
+        var formAdd = $('#f_add_component')
 
         if (formAdd.length > 0 ) {
             checkMethodPost('add')
@@ -156,7 +157,7 @@
         let method = "POST"
 
         if (methodPatch.length) {
-            id = $('#f_edit_asset input[name="id"]').val();
+            id = $('#f_edit_component input[name="id"]').val();
             // Jika mengirimkan data dg FormData dan method ajaxnya adl PATCH, maka datanya akan selalu kosong
             // method = "PATCH"
         }

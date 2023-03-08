@@ -59,7 +59,7 @@
 
     <script>
     $(document).ready(function() {
-        $('#asset_photo').change(function(e) {
+        $('#photo_component').change(function(e) {
            var reader = new FileReader();
            reader.onload = function(e) {
                 $('#photo').attr('src', e.target.result)

@@ -10,7 +10,7 @@
             {data: 'type.name',name: 'type.name'},
             {data: 'brand.name',name: 'brand.name'},
             {data: 'quantity',name: 'quantity'},
-            {data: 'qty_available',name: 'qty_available'},
+            {data: 'available_quantity',name: 'available_quantity'},
             {data: 'action',name: 'action'},
         ],
     })

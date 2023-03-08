@@ -26,34 +26,35 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <div class="form-group">
-                                <label class="form-label" for="default-01">Pemasok<span class="text-danger">*</span></label>
-                                <div class="form-control-wrap">
-                                    <select class="form-control" name="supplier_id" id="supplier_id">
-                                        @isset($suppliers)
-                                            <option value=""></option>
-                                            @foreach ($suppliers as $supplier)
-                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                                            @endforeach
-                                        @endisset
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="default-01">Lokasi<span class="text-danger">*</span></label>
-                                <div class="form-control-wrap">
-                                    <select class="form-control" name="location_id" id="location_id">
-                                        @isset($locations)
-                                            <option value=""></option>
-                                            @foreach ($locations as $location)
-                                                <option value="{{ $location->id }}">{{ $location->name }}</option>
-                                            @endforeach
-                                        @endisset
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col-sm-6 my-1">
+                                <div class="form-group">
+                                    <label class="form-label" for="default-01">Pemasok<span class="text-danger">*</span></label>
+                                    <div class="form-control-wrap">
+                                        <select class="form-control" name="supplier_id" id="supplier_id">
+                                            @isset($suppliers)
+                                                <option value=""></option>
+                                                @foreach ($suppliers as $supplier)
+                                                    <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                                @endforeach
+                                            @endisset
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="default-01">Lokasi<span class="text-danger">*</span></label>
+                                    <div class="form-control-wrap">
+                                        <select class="form-control" name="location_id" id="location_id">
+                                            @isset($locations)
+                                                <option value=""></option>
+                                                @foreach ($locations as $location)
+                                                    <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                @endforeach
+                                            @endisset
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Harga Beli<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
@@ -67,17 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Tanggal Beli<span class="text-danger">*</span></label>
-                                    <div class="form-control-wrap">
-                                        <div class="form-icon form-icon-right">
-                                            <em class="icon ni ni-calendar-alt"></em>
-                                        </div>
-                                        <input id="purchase_date" name="purchase_date" type="text" class="form-control date-picker">
-                                    </div>
-                                    <div class="form-note">tanggal format <code>mm/dd/yyyy</code></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="asset_photo" class="form-label">Gambar</label>
+                                    <label for="photo_component" class="form-label">Gambar</label>
                                     <div class="col-sm-8">
                                         <img
                                             id="photo"
@@ -87,12 +78,19 @@
                                         >
                                     </div>
                                     <div class="col-sm-10 mt-3">
-                                        <input type="file" name="asset_photo" id="asset_photo" class="form-control">
+                                        <input type="file" name="photo_component" id="photo_component" class="form-control">
                                     </div>
                                 </div>
                             </div>
 
+
                             <div class="col-sm-6 my-1">
+                                <div class="form-group">
+                                    <label class="form-label" for="default-01">Jumlah</label>
+                                    <div class="form-control-wrap">
+                                        <input id="quantity" name="quantity" type="number" class="form-control">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Merek<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
@@ -120,6 +118,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="form-label">Tanggal Beli<span class="text-danger">*</span></label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-icon form-icon-right">
+                                            <em class="icon ni ni-calendar-alt"></em>
+                                        </div>
+                                        <input id="purchase_date" name="purchase_date" type="text" class="form-control date-picker">
+                                    </div>
+                                    <div class="form-note">tanggal format <code>mm/dd/yyyy</code></div>
+                                </div>
+                                <div class="form-group">
                                     <label class="form-label" for="default-01">Status<span class="text-danger">*</span></label>
                                     <div class="form-control-wrap">
                                         <select class="form-control" name="status" id="status">
@@ -142,7 +150,7 @@
                             </div>
                         </div>
                         <div class="my-4 d-flex justify-content-end">
-                            <button id="employee_submit" type="submit" class="btn btn-warning btn-lg">Simpan Data</button>
+                            <button id="component_submit" type="submit" class="btn btn-warning btn-lg">Simpan Data</button>
                         </div>
                     </form>
                     <hr>

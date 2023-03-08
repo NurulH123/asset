@@ -21,14 +21,15 @@ class CreateComponentsTable extends Migration
             $table->foreignId('asset_type_id')->constrained('asset_types');
             $table->foreignId('brand_id')->constrained('brands');
             $table->foreignId('location_id')->constrained('locations');
-            $table->string('serial');
+            $table->string('serial')->nullable();
+            $table->integer('warranty')->nullable();
             $table->integer('quantity');
-            $table->integer('available_quantity');
+            $table->integer('available_quantity')->default(0);
             $table->integer('cost');
             $table->boolean('isCheckin')->default(true);
             $table->string('status');
             $table->date('purchase_date');
-            $table->text('describe');
+            $table->text('describe')->nullable();
             $table->timestamps();
 
             /**

@@ -17,8 +17,7 @@ class CreateComponentTransactionsTable extends Migration
             $table->id();
             $table->foreignId('asset_id')->constrained('assets');
             $table->foreignId('component_id')->constrained('components');
-            $table->integer('qty');
-            $table->integer('qty_available');
+            $table->integer('quantity');
             $table->date('status_date');
             $table->string('status');
             $table->timestamps();

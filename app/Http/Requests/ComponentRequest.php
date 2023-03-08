@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AssetRequest extends FormRequest
+class ComponentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class AssetRequest extends FormRequest
     {
         return [
             'name'          => 'required',
+            'quantity'      => 'required',
             'cost'          => 'required',
             'purchase_date' => 'required',
             'supplier_id'   => 'required',

@@ -13,13 +13,14 @@ use App\Models\{
 };
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ComponentRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ComponentController extends Controller
 {
     public function index()
     {
-        $assets = Component::with(['brand', 'supplier', 'location'])->get();
+        $components = Component::with(['brand', 'type', 'location'])->get();
 
         $datas = [
             'suppliers'     => Supplier::all(),
@@ -30,53 +31,51 @@ class ComponentController extends Controller
         ];
 
         if (request()->ajax()) {
-            return $this->simpleThreeAction($assets);
+            return $this->simpleThreeAction($components, 'component');
         }
 
         return view('dashboard.components.index', $datas);
     }
 
-    public function store(Request $request)
+    public function store(ComponentRequest $request)
     {
-        $type = AssetType::findOrFail($request->asset_type_id);
-        $expl = explode(' ', $type->name);
-        $split = str_split($expl[0], 3)[0];
-        if (isset($expl[1])) {
-            $split .= str_split($expl[1])[0];
-        }
-        $label = strtoupper($split);
-
         $data = $request->all();
-        $data['asset_tag'] = $label.date('YdmHis').rand(1000,9999);
-        $data['photo'] = $this->convertFile($request, 'asset_photo');
-        $data['purchase_date'] = date('Y-m-d', $request->purchase_date);
+        $data['available_quantity'] = $request->quantity;
+        $data['photo'] = $this->convertFile($request, 'photo_component');
+        $data['purchase_date'] = date('Y-m-d', strtotime($request->purchase_date));
 
         $addType = Component::create($data);
 
         return $addType;
     }
 
-    public function edit(Asset $asset)
+    public function edit(Component $component)
     {
-        return $asset;
+        return $component;
     }
 
-    public function update(Request $request, Asset $asset)
+    public function update(Request $request, Component $component)
     {
         $data = $request->all();
-        if ($request->file('asset_photo')) {
-            $photoname = explode('/', $asset->photo)[3];
-            $stoPath = 'public/photo/asset_photo/'.$photoname;
+
+        if ($request->file('photo_component')) {
+            $photoname = explode('/', $component->photo)[3];
+            $stoPath = 'public/photo/photo_component/'.$photoname;
             Storage::delete($stoPath); // Menghapus photo yg sebelumnya
 
-            $data['photo'] = $this->convertFile($request, 'asset_photo');
+            $data['photo'] = $this->convertFile($request, 'photo_component');
         }
 
-        return $asset->update($data);
+        if (!is_null($request->quantity)) {
+            $difference = $component->quantity - $component->available_quantity;
+            $data['available_quantity'] = $request->quantity - $difference;
+        }
+
+        return $component->update($data);
     }
 
-    public function destroy(Asset $asset)
+    public function destroy(Component $component)
     {
-        return  $asset->delete();
+        return  $component->delete();
     }
 }

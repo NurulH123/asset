@@ -25,7 +25,7 @@ class Controller extends BaseController
                 ->make(true);
     }
 
-    protected function simpleThreeAction($data)
+    protected function simpleThreeAction($data, $type)
     {
         return datatables($data)
                 ->addIndexColumn()
@@ -39,25 +39,18 @@ class Controller extends BaseController
                                 alt="Images"
                             >';
                 })
-                ->addColumn('action', function($q) {
+                ->addColumn('action', function($q) use ($type) {
                     $id = $q->id;
 
-                    $event = $q->isCheckin ? "checkout(".$id.")" : "checkin(".$id.")";
-                    $textEvent = $q->isCheckin ? "Checkout" : "Check-in";
-                    $btnColor = $q->isCheckin ? "warning" : "info";
+                    $liCheckout = $this->attributeForCheckout($q, $type);
 
                     return '<div class="nk-footer-links btn btn-success btn-md">
                                 <ul class="nav nav-sm">
-                                    <li class="nav-item dropdown">
+                                    <li Checkoutclass="nav-item dropdown">
                                         <a href="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link text-base" data-bs-toggle="dropdown" data-offset="0,1"><span>...</span></a>
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                                             <ul class="language-list">
-                                                <li>
-                                                    <div class="d-flex justify-content-center pt-2">
-                                                        <button onclick="'.$event.'" type="button" class="btn btn-'.$btnColor.' btn-lg">'.$textEvent.'</button>
-                                                    </div>
-                                                    <hr>
-                                                </li>
+                                                '.$liCheckout.'
                                                 <li>
                                                     <a class="language-item">
                                                         <span class="language-name">Detail</span>
@@ -81,6 +74,28 @@ class Controller extends BaseController
                 })
                 ->rawColumns(['action', 'photo'])
                 ->make(true);
+    }
+
+    private function attributeForCheckout($data, $type)
+    {
+        $event = $data->isCheckin ? "checkout(".$data->id.")" : "checkin(".$data->id.")";
+        $textEvent = $data->isCheckin ? "Checkout" : "Check-in";
+        $btnColor = $data->isCheckin ? "warning" : "info";
+
+        $tagLi = '<li>
+                    <div class="d-flex justify-content-center pt-2">
+                        <button onclick="'.$event.'" type="button" class="btn btn-'.$btnColor.' btn-lg">'.$textEvent.'</button>
+                    </div>
+                    <hr>
+                </li>';
+
+        if ($type === 'component') {
+            if ($data->available_quantity === 0) {
+                $tagLi = '';
+            }
+        }
+
+        return $tagLi;
     }
 
     protected function phoneFormat($number)
