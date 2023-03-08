@@ -45,6 +45,14 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
 
     /**
      *  ============================================
+     *  |---------- COMPONENT TRANSACTION ---------|
+     *  ============================================
+     */
+    Route::post('component-transaction/{component}', 'ComponentTransactionController@store');
+    Route::get('component-transaction/{component}', 'ComponentTransactionController@statusType');
+
+    /**
+     *  ============================================
      *  |---------------- ASSET TYPE --------------|
      *  ============================================
      */

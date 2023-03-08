@@ -23,6 +23,7 @@ class ComponentController extends Controller
         $components = Component::with(['brand', 'type', 'location'])->get();
 
         $datas = [
+            'assets'        => Asset::all(),
             'suppliers'     => Supplier::all(),
             'brands'        => Brand::all(),
             'locations'     => Location::all(),

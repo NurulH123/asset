@@ -49,13 +49,13 @@
     </div>
 </div>
 @include('dashboard.components.modal_components')
-{{-- @include('dashboard.components.components.modal.checkout') --}}
+@include('dashboard.components.components.modal.checkout')
 @endsection
 
 @push('scripts_bottom')
     @include('dashboard.components.scripts.datatable')
     @include('dashboard.components.scripts.crud')
-    {{-- @include('dashboard.components.scripts.asset_transaction') --}}
+    @include('dashboard.components.scripts.component_transaction')
 
     <script>
     $(document).ready(function() {

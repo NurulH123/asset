@@ -2,15 +2,19 @@
 
 namespace  App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
+use App\Http\Controllers\Dashboard\Traits\Datatable\ThreeAction;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests,
+        DispatchesJobs,
+        ValidatesRequests,
+        ThreeAction;
 
     protected function simpleData($data)
     {
@@ -40,7 +44,6 @@ class Controller extends BaseController
                             >';
                 })
                 ->addColumn('action', function($q) use ($type) {
-                    $id = $q->id;
 
                     $liCheckout = $this->attributeForCheckout($q, $type);
 
@@ -57,12 +60,12 @@ class Controller extends BaseController
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a onclick="edit('.$id.')" class="language-item">
+                                                    <a onclick="edit('.$q->id.')" class="language-item">
                                                         <span class="language-name">Edit</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a onclick="remove('.$id.')" class="language-item">
+                                                    <a onclick="remove('.$q->id.')" class="language-item">
                                                         <span class="language-name">Delete</span>
                                                     </a>
                                                 </li>
@@ -74,28 +77,6 @@ class Controller extends BaseController
                 })
                 ->rawColumns(['action', 'photo'])
                 ->make(true);
-    }
-
-    private function attributeForCheckout($data, $type)
-    {
-        $event = $data->isCheckin ? "checkout(".$data->id.")" : "checkin(".$data->id.")";
-        $textEvent = $data->isCheckin ? "Checkout" : "Check-in";
-        $btnColor = $data->isCheckin ? "warning" : "info";
-
-        $tagLi = '<li>
-                    <div class="d-flex justify-content-center pt-2">
-                        <button onclick="'.$event.'" type="button" class="btn btn-'.$btnColor.' btn-lg">'.$textEvent.'</button>
-                    </div>
-                    <hr>
-                </li>';
-
-        if ($type === 'component') {
-            if ($data->available_quantity === 0) {
-                $tagLi = '';
-            }
-        }
-
-        return $tagLi;
     }
 
     protected function phoneFormat($number)

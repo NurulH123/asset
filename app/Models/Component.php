@@ -31,6 +31,6 @@ class Component extends Model
 
     public function transaction()
     {
-        return $this->hasMany(AssetTransaction::class);
+        return $this->hasMany(ComponentTransaction::class);
     }
 }
