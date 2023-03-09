@@ -59,7 +59,7 @@ class AssetController extends Controller
         return $asset;
     }
 
-    public function update(Request $request, Asset $asset)
+    public function update(AssetRequest $request, Asset $asset)
     {
         $data = $request->all();
         if ($request->file('asset_photo')) {

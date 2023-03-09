@@ -15,6 +15,10 @@
                                     <div class="form-control-wrap">
                                         <input id="name" name="name" type="text" class="form-control" id="default-01">
                                     </div>
+
+                                    <div class="err err_name p-1">
+                                        <span class="text-danger"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-12 my-1">
@@ -33,6 +37,10 @@
                                     <div class="form-control-wrap">
                                         <input id="cost" name="cost" type="text" class="form-control" id="default-01">
                                     </div>
+
+                                    <div class="err err_cost p-1">
+                                        <span class="text-danger"></span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Garansi</label>
@@ -47,6 +55,10 @@
                                             <em class="icon ni ni-calendar-alt"></em>
                                         </div>
                                         <input id="purchase_date" name="purchase_date" type="text" class="form-control date-picker">
+
+                                        <div class="err err_purchase_date p-1">
+                                            <span class="text-danger"></span>
+                                        </div>
                                     </div>
                                     <div class="form-note">tanggal format <code>mm/dd/yyyy</code></div>
                                 </div>
@@ -79,6 +91,10 @@
                                             @endisset
                                         </select>
                                     </div>
+
+                                    <div class="err err_supplier_id p-1">
+                                        <span class="text-danger"></span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Merek<span class="text-danger">*</span></label>
@@ -91,6 +107,10 @@
                                                 @endforeach
                                             @endisset
                                         </select>
+                                    </div>
+
+                                    <div class="err err_brand_id p-1">
+                                        <span class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -105,6 +125,10 @@
                                             @endisset
                                         </select>
                                     </div>
+
+                                    <div class="err err_location_id p-1">
+                                        <span class="text-danger"></span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="default-01">Tipe Aset<span class="text-danger">*</span></label>
@@ -117,6 +141,10 @@
                                                 @endforeach
                                             @endisset
                                         </select>
+                                    </div>
+
+                                    <div class="err err_asset_type_id p-1">
+                                        <span class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -131,6 +159,10 @@
                                             <option value="lost">Hilang</option>
                                             <option value="out_maintenance">Rusak</option>
                                         </select>
+                                    </div>
+
+                                    <div class="err err_status p-1">
+                                        <span class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">

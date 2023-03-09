@@ -32,7 +32,19 @@ class AssetRequest extends FormRequest
             'location_id'   => 'required',
             'asset_type_id' => 'required',
             'status'        => 'required',
-            'photo'         => 'mimes:png,jpg,jpeg',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required'             => 'Nama aset harus diisi',
+            'cost.required'             => 'Harga tidak boleh kosong',
+            'supplier_id.required'      => 'Pemasok harus diisi',
+            'brand_id.required'         => 'Merek tidak boleh kosong',
+            'location_id.required'      => 'Lokasi kosong',
+            'asset_type_id.required'    => 'Tipe aset harus diisi',
+            'status.required'           => 'Status tidak boleh kosong',
         ];
     }
 }

@@ -42,6 +42,14 @@
 
     }
 
+    function netralMsg() {
+        var errTag = $('#m_asset .err')
+
+        for (let i = 0; i < errTag.length; i++) {
+            $(errTag[i]).find('span').text('')
+        }
+    }
+
     /**
      * ==============================================
      * |---------------- ADD DATA ------------------|
@@ -136,6 +144,7 @@
     // Menghapus input id jika formnya tambah
     // Menghapus input method post jika formnya tambah
     $('#m_asset').on('show.bs.modal', function(e) {
+        netralMsg()
         var formAdd = $('#f_add_asset')
 
         if (formAdd.length > 0 ) {
@@ -173,6 +182,16 @@
                 table.ajax.reload()
 
                 form.reset()
+            },
+            error: (err) => {
+                const error = err.responseJSON.errors
+                const keys = Object.keys(err.responseJSON.errors);
+
+                for (const i in keys) {
+                    let msg = error[keys[i]]
+
+                    $(`#m_asset form .err_${keys[i]} span`).text(msg[0])
+                }
             }
         })
     })
