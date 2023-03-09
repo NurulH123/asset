@@ -40,6 +40,7 @@ class AssetRequest extends FormRequest
         return [
             'name.required'             => 'Nama aset harus diisi',
             'cost.required'             => 'Harga tidak boleh kosong',
+            'purchase_date.required'    => 'Tanggal beli harus diisi',
             'supplier_id.required'      => 'Pemasok harus diisi',
             'brand_id.required'         => 'Merek tidak boleh kosong',
             'location_id.required'      => 'Lokasi kosong',

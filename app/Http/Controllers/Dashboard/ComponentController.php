@@ -55,7 +55,7 @@ class ComponentController extends Controller
         return $component;
     }
 
-    public function update(Request $request, Component $component)
+    public function update(ComponentRequest $request, Component $component)
     {
         $data = $request->all();
 

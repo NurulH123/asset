@@ -39,6 +39,10 @@ class DepartmentController extends Controller
 
     public function update(Request $request, Department $department)
     {
+        $this->validate($request,
+            ['name' => 'required'],
+            ['name.required' => 'Nama Harus Diisi']
+        );
 
         return $department->update($request->all());
     }

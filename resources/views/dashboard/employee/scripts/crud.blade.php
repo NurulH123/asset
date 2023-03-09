@@ -54,6 +54,15 @@
 
     }
 
+    // Menghapus pesan error
+    function netralMsg() {
+        var errTag = $('#m_employee .err')
+
+        for (let i = 0; i < errTag.length; i++) {
+            $(errTag[i]).find('span').text('')
+        }
+    }
+
     /**
      * ==============================================
      * |---------------- ADD DATA ------------------|
@@ -142,6 +151,7 @@
     // Menghapus input id jika formnya tambah
     // Menghapus input method post jika formnya tambah
     $('#m_employee').on('show.bs.modal', function(e) {
+        netralMsg()
         var formAdd = $('#f_add_employee')
 
         if (formAdd.length > 0 ) {
@@ -174,6 +184,16 @@
                 $('#m_employee').modal('hide')
                 table.ajax.reload()
                 form[0].reset()
+            },
+            error: (err) => {
+                const error = err.responseJSON.errors
+                const keys = Object.keys(err.responseJSON.errors);
+
+                for (const i in keys) {
+                    let msg = error[keys[i]]
+
+                    $(`#m_employee form .err_${keys[i]} span`).text(msg[0])
+                }
             }
         })
     })

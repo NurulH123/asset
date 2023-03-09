@@ -39,7 +39,11 @@ class LocationController extends Controller
 
     public function update(Request $request, Location $location)
     {
-
+        $this->validate($request,
+            ['name' => 'required'],
+            ['name.required' => 'Nama Harus Diisi']
+        );
+        
         return $location->update($request->all());
     }
 

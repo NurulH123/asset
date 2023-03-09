@@ -42,6 +42,7 @@
 
     }
 
+    // Menghapus pesan error 
     function netralMsg() {
         var errTag = $('#m_asset .err')
 

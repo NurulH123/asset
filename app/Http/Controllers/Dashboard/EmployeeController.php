@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\{ Employee, Department };
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -20,7 +21,7 @@ class EmployeeController extends Controller
         return view('dashboard.employee.index', compact('departments'));
     }
 
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
         $data = $request->all();
         if (isset($request->phone)) {
@@ -37,7 +38,7 @@ class EmployeeController extends Controller
         return $employee;
     }
 
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeRequest $request, Employee $employee)
     {
         $data = $request->all();
         if (isset($request->phone)) {

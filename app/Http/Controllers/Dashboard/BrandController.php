@@ -39,6 +39,10 @@ class BrandController extends Controller
 
     public function update(Request $request, Brand $brand)
     {
+        $this->validate($request,
+            ['name' => 'required'],
+            ['name.required' => 'Nama Harus Diisi']
+        );
 
         return $brand->update($request->all());
     }

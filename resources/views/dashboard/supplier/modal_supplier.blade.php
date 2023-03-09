@@ -14,6 +14,10 @@
                             <div class="form-control-wrap">
                                 <input name="name" type="text" class="form-control" id="default-01" placeholder="Masukkan Nama">
                             </div>
+
+                            <div class="err err_name p-1">
+                                <span class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Email</label>
@@ -26,6 +30,10 @@
                             <div class="form-control-wrap">
                                 <input name="address" type="text" class="form-control">
                             </div>
+
+                            <div class="err err_address p-1">
+                                <span class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">No Hp<span class="text-danger">*</span></label>
@@ -34,6 +42,10 @@
                                   <span class="input-group-text" id="basic-addon1">+62</span>
                                 </div>
                                 <input name="phone" type="number" class="form-control" placeholder="contoh: 81378239xxx" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+
+                            <div class="err err_phone p-1">
+                                <span class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group">

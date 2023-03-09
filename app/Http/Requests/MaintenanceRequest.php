@@ -32,4 +32,16 @@ class MaintenanceRequest extends FormRequest
             'end_date'      => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'asset_id.required'      => 'Aset harus diisi',
+            'supplier_id.required'   => 'Pemasok kosong',
+            'asset_type_id.required' => 'Tipe aset harus diisi',
+            'type.required'          => 'Status harus diisi',
+            'start_date.required'    => 'Tanggal mulai kosong',
+            'end_date.required'      => 'Tanggal berakhir kosong',
+        ];
+    }
 }

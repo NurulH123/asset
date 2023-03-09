@@ -135,6 +135,16 @@
                 $('#m_general').modal('hide')
                 table.ajax.reload()
                 form[0].reset()
+            },
+            error: (err) => {
+                const error = err.responseJSON.errors
+                const keys = Object.keys(err.responseJSON.errors);
+
+                for (const i in keys) {
+                    let msg = error[keys[i]]
+
+                    $(`#m_general form .err_${keys[i]} span`).text(msg[0])
+                }
             }
         })
     })

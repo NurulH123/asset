@@ -42,6 +42,15 @@
 
     }
 
+    // Menghapus pesan error
+    function netralMsg() {
+        var errTag = $('#m_component .err')
+
+        for (let i = 0; i < errTag.length; i++) {
+            $(errTag[i]).find('span').text('')
+        }
+    }
+
     /**
      * ==============================================
      * |---------------- ADD DATA ------------------|
@@ -137,6 +146,7 @@
     // Menghapus input id jika formnya tambah
     // Menghapus input method post jika formnya tambah
     $('#m_component').on('show.bs.modal', function(e) {
+        netralMsg()
         var formAdd = $('#f_add_component')
 
         if (formAdd.length > 0 ) {
@@ -174,6 +184,16 @@
                 table.ajax.reload()
 
                 form.reset()
+            },
+            error: (err) => {
+                const error = err.responseJSON.errors
+                const keys = Object.keys(err.responseJSON.errors);
+
+                for (const i in keys) {
+                    let msg = error[keys[i]]
+
+                    $(`#m_component form .err_${keys[i]} span`).text(msg[0])
+                }
             }
         })
     })

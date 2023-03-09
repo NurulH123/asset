@@ -18,6 +18,10 @@
 
                                 @endforelse
                             </select>
+
+                            <div class="err err_asset_id p-1">
+                                <span class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Pemasok<span class="text-danger">*</span></label>
@@ -29,6 +33,10 @@
 
                                 @endforelse
                             </select>
+
+                            <div class="err err_supplier_id p-1">
+                                <span class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Tipe Aset<span class="text-danger">*</span></label>
@@ -40,6 +48,10 @@
 
                                 @endforelse
                             </select>
+
+                            <div class="err err_asset_type_id p-1">
+                                <span class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Status<span class="text-danger">*</span></label>
@@ -53,6 +65,10 @@
                                 <option value="software_support">Dukungan Perangkat Lunak</option>
                                 <option value="hardware_support">Dukungan Perangkat Keras</option>
                             </select>
+
+                            <div class="err err_type p-1">
+                                <span class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Mulai Maintenance<span class="text-danger">*</span></label>
@@ -61,6 +77,10 @@
                                     <em class="icon ni ni-calendar-alt"></em>
                                 </div>
                                 <input id="start_date" name="start_date" type="text" class="form-control date-picker">
+
+                                <div class="err err_start_date p-1">
+                                    <span class="text-danger"></span>
+                                </div>
                             </div>
                             <div class="form-note">tanggal format <code>mm/dd/yyyy</code></div>
                         </div>
@@ -71,6 +91,10 @@
                                     <em class="icon ni ni-calendar-alt"></em>
                                 </div>
                                 <input id="end_date" name="end_date" type="text" class="form-control date-picker">
+
+                                <div class="err err_end_date p-1">
+                                    <span class="text-danger"></span>
+                                </div>
                             </div>
                             <div class="form-note">tanggal format <code>mm/dd/yyyy</code></div>
                         </div>

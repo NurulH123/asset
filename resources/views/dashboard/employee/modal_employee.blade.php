@@ -13,6 +13,10 @@
                             <div class="form-control-wrap">
                                 <input name="name" type="text" class="form-control" id="default-01" placeholder="Masukkan Nama">
                             </div>
+
+                            <div class="err err_name p-1">
+                                <span class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Departemen<span class="text-danger">*</span></label>
@@ -24,6 +28,10 @@
 
                                 @endforelse
                             </select>
+
+                            <div class="err err_department_id p-1">
+                                <span class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="default-01">Email</label>

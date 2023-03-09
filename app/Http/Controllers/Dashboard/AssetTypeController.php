@@ -39,6 +39,10 @@ class AssetTypeController extends Controller
 
     public function update(Request $request, AssetType $asset_type)
     {
+        $this->validate($request,
+            ['name' => 'required'],
+            ['name.required' => 'Nama Harus Diisi']
+        );
 
         return $asset_type->update($request->all());
     }

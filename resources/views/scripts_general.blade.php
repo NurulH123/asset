@@ -31,6 +31,15 @@
 
     }
 
+    // Menghapus pesan error
+    function netralMsg() {
+        var errTag = $('#m_general .err')
+
+        for (let i = 0; i < errTag.length; i++) {
+            $(errTag[i]).find('span').text('')
+        }
+    }
+
     /**
      *
      * Menegecek setiap modal m_general muncul, apakah ada method PATCH.
@@ -41,6 +50,7 @@
      * */
 
     $('#m_general').on('show.bs.modal', function() {
+        netralMsg()
         var formAdd = $('#f_add_general')
 
         if (formAdd.length > 0 ) {
