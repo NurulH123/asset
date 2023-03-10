@@ -16,6 +16,26 @@ class Controller extends BaseController
         ValidatesRequests,
         ThreeAction;
 
+    protected function datatableNonAction($datas)
+    {
+        return datatables($datas)
+                ->addIndexColumn()
+                ->addColumn('category', function($q) {
+                    $status = '';
+
+                    if (isset($q->status)) {
+                        $color = $q->status === 'checkout' ? 'warning' : 'info';
+                        $status = '<p class="badge bg-'.$color.'">'.$q->status.'</p>';
+
+                        return $status;
+                    }
+
+                    return $status;
+                })
+                ->rawColumns(['category'])
+                ->make(true);
+    }
+
     protected function simpleData($data)
     {
         return datatables($data)
@@ -44,6 +64,7 @@ class Controller extends BaseController
                             >';
                 })
                 ->addColumn('action', function($q) use ($type) {
+                    $link = route('asset.show', $q->id);
 
                     $liCheckout = $this->attributeForCheckout($q, $type);
 
@@ -55,7 +76,7 @@ class Controller extends BaseController
                                             <ul class="language-list">
                                                 '.$liCheckout.'
                                                 <li>
-                                                    <a class="language-item">
+                                                    <a href="'.$link.'" class="language-item">
                                                         <span class="language-name">Detail</span>
                                                     </a>
                                                 </li>

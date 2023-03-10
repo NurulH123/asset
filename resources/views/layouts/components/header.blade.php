@@ -1,3 +1,4 @@
+
 <!-- main header @s -->
 <div class="nk-header nk-header-fixed is-light">
     <div class="container-fluid">
@@ -7,12 +8,60 @@
             </div>
             <div class="nk-header-brand d-xl-none">
                 <a href="html/index.html" class="logo-link">
-                    <img class="logo-light logo-img" src="{{ asset('images/logo.png') }}" srcset="images/logo2x.png 2x" alt="logo">
-                    <img class="logo-dark logo-img" src="{{ asset('images/logo-dark.png') }}" srcset="images/logo-dark2x.png 2x" alt="logo-dark">
+                    <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
+                    <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                 </a>
             </div><!-- .nk-header-brand -->
+            <div class="nk-header-news d-none d-xl-block">
+                <div class="nk-news-list">
+                    <a class="nk-news-item" href="#">
+                        <div class="nk-news-icon">
+                            <em class="icon ni ni-card-view"></em>
+                        </div>
+                        <div class="nk-news-text">
+                            <p>Do you know the latest update of 2022? <span> A overview of our is now available on YouTube</span></p>
+                            <em class="icon ni ni-external"></em>
+                        </div>
+                    </a>
+                </div>
+            </div><!-- .nk-header-news -->
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
+                    <li class="dropdown language-dropdown d-none d-sm-block me-n1">
+                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                            <div class="quick-icon border border-light">
+                                <img class="icon" src="./images/flags/english-sq.png" alt="">
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-s1">
+                            <ul class="language-list">
+                                <li>
+                                    <a href="#" class="language-item">
+                                        <img src="./images/flags/english.png" alt="" class="language-flag">
+                                        <span class="language-name">English</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="language-item">
+                                        <img src="./images/flags/spanish.png" alt="" class="language-flag">
+                                        <span class="language-name">Español</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="language-item">
+                                        <img src="./images/flags/french.png" alt="" class="language-flag">
+                                        <span class="language-name">Français</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="language-item">
+                                        <img src="./images/flags/turkey.png" alt="" class="language-flag">
+                                        <span class="language-name">Türkçe</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li><!-- .dropdown -->
                     <li class="dropdown user-dropdown">
                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <div class="user-toggle">
@@ -46,15 +95,9 @@
                                 </ul>
                             </div>
                             <div class="dropdown-inner">
-                                <form action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <div class="link-list">
-                                        <button class="btn btn-danger btn-sm" type="submit"><em class="icon ni ni-signout"></em> Logout</button>
-                                    </div>
-                                </form>
-                                {{-- <ul class="link-list">
+                                <ul class="link-list">
                                     <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
-                                </ul> --}}
+                                </ul>
                             </div>
                         </div>
                     </li><!-- .dropdown -->

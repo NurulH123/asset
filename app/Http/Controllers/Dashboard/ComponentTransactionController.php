@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Component;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Asset;
+use App\Models\ComponentTransaction;
 
 class ComponentTransactionController extends Controller
 {
@@ -41,5 +43,19 @@ class ComponentTransactionController extends Controller
         ]); // update component
 
         return $transaction;
+    }
+
+    public function assetComponent($assetId)
+    {
+        $component = ComponentTransaction::where('asset_id', $assetId)
+                        ->with([
+                            'components.type',
+                            'components.supplier',
+                            'components.location',
+                            'components.brand',
+                            ])
+                        ->get();
+
+        return $this->datatableNonAction($component);
     }
 }

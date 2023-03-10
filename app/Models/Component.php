@@ -9,6 +9,11 @@ class Component extends Model
 {
     protected $guarded = ['id'];
 
+    public function assets()
+    {
+        return $this->belongsToMany(Asset::class, 'component_transactions');
+    }
+
     public function type()
     {
         return $this->belongsTo(AssetType::class, 'asset_type_id', 'id');

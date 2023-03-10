@@ -2,13 +2,18 @@
 
 namespace  App\Models;
 
-use App\Models\AssetType;
+use App\Models\{ AssetType, ComponentTransaction };
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Asset extends Model
 {
     protected $guarded = ['id'];
+
+    public function components()
+    {
+        return $this->belongsToMany(Component::class, ComponentTransaction::class);
+    }
 
     public function type()
     {

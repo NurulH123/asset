@@ -10,6 +10,7 @@ use App\Models\AssetType;
 use App\Models\Brand;
 use App\Models\Employee;
 use App\Models\Location;
+use App\Models\Maintenance;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Storage;
 
@@ -32,6 +33,11 @@ class AssetController extends Controller
         }
 
         return view('dashboard.assets.index', $datas);
+    }
+
+    public function show(Asset $asset)
+    {
+        return view('dashboard.asset_details.index', compact('asset'));
     }
 
     public function store(AssetRequest $request)
@@ -76,5 +82,14 @@ class AssetController extends Controller
     public function destroy(Asset $asset)
     {
         return  $asset->delete();
+    }
+
+    public function assetMaintenance($assetId)
+    {
+        $maintenances = Maintenance::where('asset_id', $assetId)
+                            ->with(['supplier', 'assetType'])
+                            ->get();
+
+        return $this->datatableNonAction($maintenances);
     }
 }

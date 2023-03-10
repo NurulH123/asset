@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
+use App\Models\AssetTransaction;
 use Illuminate\Http\Request;
 
 class AssetTransactionController extends Controller
@@ -28,5 +29,14 @@ class AssetTransactionController extends Controller
         $asset->update(['isCheckin' => !$status]); // update data isCheckin
 
         return $transaction;
+    }
+
+    public function assetTransaction($assetId)
+    {
+        $transaction = AssetTransaction::with(['asset.type', 'employee.department'])
+                                ->where('asset_id', $assetId)
+                                ->get();
+
+        return $this->datatableNonAction($transaction);
     }
 }

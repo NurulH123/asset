@@ -2,7 +2,21 @@
 <html lang="zxx" class="js">
 
 <head>
-    <base href=".">
+    {{-- <base href=".">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+
+    <!-- Fav Icon  -->
+    <!-- Page Title  -->
+    <title>@yield('title')</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css?ver=3.1.2') }}">
+    <link id="skin-default" rel="stylesheet" href="{{ asset('assets/css/theme.css?ver=3.1.2') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css') }}"> --}}
+
+    <base href="../../../">
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,13 +24,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Fav Icon  -->
-    {{-- <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}"> --}}
+    <link rel="shortcut icon" href="./images/favicon.png">
     <!-- Page Title  -->
     <title>@yield('title')</title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css?ver=3.1.2') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('assets/css/theme.css?ver=3.1.2') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css') }}">
+    <link rel="stylesheet" href="./assets/css/dashlite.css?ver=3.1.2">
+    <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=3.1.2">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/css/libs/fontawesome-icons.css') }}">
     <script src="https://kit.fontawesome.com/6b5b180fe0.js" crossorigin="anonymous"></script>
@@ -61,6 +74,7 @@
     <script src="{{ asset('assets/libs/jquery-steps/lib/jquery-1.11.1.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
+    <!-- JavaScript -->
     <script src="./assets/js/bundle.js?ver=3.1.2"></script>
     <script src="./assets/js/scripts.js?ver=3.1.2"></script>
     <script src="{{ asset('assets/js/charts/gd-default.js?ver=3.1.2') }}"></script>

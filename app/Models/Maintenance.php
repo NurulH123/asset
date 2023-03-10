@@ -29,4 +29,8 @@ class Maintenance extends Model
         return $this->belongsTo(Supplier::class);
     }
 
+    public function assetType()
+    {
+        return $this->belongsTo(AssetType::class, 'asset_type_id', 'id');
+    }
 }
