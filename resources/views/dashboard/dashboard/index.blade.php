@@ -88,11 +88,11 @@
                                 <div class="card-inner border-bottom">
                                     <div class="card-title-group py-2">
                                         <div class="card-title" style="z-index: 999">
-                                            <h4 class="title">Penurunan</h4>
+                                            <h4 class="title">Karyawan</h4>
                                             <h4>102</h4>
                                         </div>
                                         <span class="nk-menu-icon">
-                                            <i class="fa-solid fa-calculator" style="transform:scale(5); opacity: .3"></i>
+                                            <i class="fa-solid fa-users" style="transform:scale(5); opacity: .3"></i>
                                         </span>
                                     </div>
                                 </div>

@@ -5,12 +5,6 @@
         inputStatus(id)
     }
 
-    function checkin(id) {
-        $('#m_checkout_component #employee_id label').text('Check-in Dari')
-        $('#m_checkout_component #status_date label').text('Tanggal Check-in')
-        inputStatus(id)
-    }
-
     function inputStatus(id) {
         $.ajax({
             url: "{{ url('component-transaction') }}/" + id,
@@ -36,7 +30,6 @@
             data: $(this).serialize(),
             success: (res) => {
 
-                console.log(res);
                 if (res) {
                     $('#m_checkout_component').modal('hide')
 

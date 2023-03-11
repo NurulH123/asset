@@ -14,4 +14,19 @@ class ComponentTransaction extends Pivot
     {
         return $this->belongsTo(Component::class, 'component_id', 'id');
     }
+
+    public function assets()
+    {
+        return $this->belongsTo(Asset::class, 'asset_id', 'id');
+    }
+
+    public function parent()
+    {
+        return $this->hasMany(ComponentTransaction::class, 'parent_id', 'id');
+    }
+
+    public function child()
+    {
+        return $this->belongsTo(ComponentTransaction::class, 'parent_id', 'id');
+    }
 }

@@ -26,8 +26,9 @@ trait ThreeAction
             $attribute['text'] = "Checkout";
 
             $liCheckout = $this->liCheckout($attribute);
+
             if ($data->available_quantity === 0) {
-                $$liCheckout = '';
+                $liCheckout = '';
             }
         }
 

@@ -48,6 +48,14 @@
                         </a>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item">
+                        <a href="{{ route('maintenance.index')}}" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <i class="fa-solid fa-calculator" style="transform:scale(1.4);"></i>
+                            </span>
+                            <span class="nk-menu-text">Depreciation</span>
+                        </a>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
                         <a href="{{ route('asset-type.index') }}" class="nk-menu-link">
                             <span class="nk-menu-icon">
                                 <i class="fa-solid fa-tag" style="transform:scale(1.4)"></i>

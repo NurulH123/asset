@@ -50,9 +50,19 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      *  |---------- COMPONENT TRANSACTION ---------|
      *  ============================================
      */
-    Route::post('component-transaction/{component}', 'ComponentTransactionController@store');
+    Route::post('component-transaction/{component}', 'ComponentTransactionController@store')->name('component-transaction.store');
     Route::get('component-transaction/{component}', 'ComponentTransactionController@statusType');
     Route::get('asset-component/{id}', 'ComponentTransactionController@assetComponent');
+    Route::get('component-transaction/{component}/show', 'ComponentTransactionController@componentTransaction');
+    Route::get('checkin-component/{transaction}', 'ComponentTransactionController@showCheckin')->name('checkin-component.show');
+    Route::post('checkin-component/{transaction}', 'ComponentTransactionController@checkin')->name('checkin-component.store');
+
+    /**
+     *  ============================================
+     *  |----------------- COMPONENT --------------|
+     *  ============================================
+     */
+    Route::resource('depreciation', 'DepreciationController');
 
     /**
      *  ============================================

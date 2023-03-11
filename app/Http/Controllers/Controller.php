@@ -64,7 +64,7 @@ class Controller extends BaseController
                             >';
                 })
                 ->addColumn('action', function($q) use ($type) {
-                    $link = route('asset.show', $q->id);
+                    $link =  route($type.'.show', $q->id);
 
                     $liCheckout = $this->attributeForCheckout($q, $type);
 

@@ -9,6 +9,7 @@ use App\Models\{
     Brand,
     Location,
     AssetType,
+    ComponentTransaction,
     Employee
 };
 use Illuminate\Http\Request;
@@ -36,6 +37,17 @@ class ComponentController extends Controller
         }
 
         return view('dashboard.components.index', $datas);
+    }
+
+    public function show(Component $component)
+    {
+        $datas = [
+            'component'     => $component,
+            'dt_components' => Component::all(),
+            'dt_assets'     => Asset::all(),
+        ];
+
+        return view('dashboard.component_details.index', $datas);
     }
 
     public function store(ComponentRequest $request)
