@@ -23,9 +23,6 @@
                                     <h2 class="text-success"><b>{{ $component->name }} </b></h2>
                                     <h5 class="text-gray">{{ $component->type->name }} <b>.</b> {{ $component->status }}</h5>
                                 </div>
-                                {{-- <div class="card card-bordered w-20">
-                                    <img src="{{ (!empty($asset->photo)) ? asset($asset->photo) : asset('/assets/images/noimage.png') }}" class="card-img-top" alt="">
-                                </div> --}}
                             </div>
                             <div class="card-inner">
                                 <hr>
@@ -45,7 +42,7 @@
                                         @include('dashboard.component_details.details.index')
                                     </div>
                                     <div class="tab-pane" id="files">
-                                        <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
+                                        @include('dashboard.general_details.files.index')
                                     </div>
                                     <div class="tab-pane" id="deprecations">
                                         <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
@@ -61,4 +58,5 @@
 </div>
 <!-- content @e -->
 @include('dashboard.component_details.details.modal_checkin')
+@include('dashboard.general_details.files.modal_files')
 @endsection

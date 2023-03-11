@@ -2,6 +2,7 @@
 
 namespace  App\Models;
 
+use App\Models\File;
 use App\Models\ComponentTransaction;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,5 +38,10 @@ class Component extends Model
     public function transaction()
     {
         return $this->hasMany(ComponentTransaction::class);
+    }
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'filable');
     }
 }

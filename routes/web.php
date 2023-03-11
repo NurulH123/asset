@@ -57,6 +57,17 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
     Route::get('checkin-component/{transaction}', 'ComponentTransactionController@showCheckin')->name('checkin-component.show');
     Route::post('checkin-component/{transaction}', 'ComponentTransactionController@checkin')->name('checkin-component.store');
 
+
+    /**
+     *  ============================================
+     *  |------------------- FILES ----------------|
+     *  ============================================
+     */
+    Route::get('files', 'FileController@getFile')->name('files.api');
+    Route::post('files', 'FileController@store')->name('files.store');
+    Route::get('files/download/{file}', 'FileController@download')->name('files.download');
+    Route::delete('files/{file}', 'FileController@destroy')->name('files.destroy');
+
     /**
      *  ============================================
      *  |----------------- COMPONENT --------------|

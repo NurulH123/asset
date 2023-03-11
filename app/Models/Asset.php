@@ -2,9 +2,9 @@
 
 namespace  App\Models;
 
+use App\Models\File;
 use App\Models\{ AssetType, ComponentTransaction };
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Asset extends Model
 {
@@ -43,5 +43,10 @@ class Asset extends Model
     public function maintenance()
     {
         return $this->hasMany(Maintenance::class);
+    }
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'filable');
     }
 }
