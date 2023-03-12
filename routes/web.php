@@ -73,7 +73,8 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      *  |----------------- COMPONENT --------------|
      *  ============================================
      */
-    Route::resource('depreciation', 'DepreciationController');
+    Route::resource('depreciations', 'DepreciationController');
+    Route::get('depreciations/type/{type}', 'DepreciationController@getCategory');
 
     /**
      *  ============================================

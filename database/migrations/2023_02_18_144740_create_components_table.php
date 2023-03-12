@@ -15,7 +15,7 @@ class CreateComponentsTable extends Migration
     {
         Schema::create('components', function (Blueprint $table) {
             $table->id();
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('name');
             $table->foreignId('supplier_id')->constrained('suppliers');
             $table->foreignId('asset_type_id')->constrained('asset_types');

@@ -46,7 +46,7 @@
                                         <a class="nav-link" data-bs-toggle="tab" href="#files">File</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#deprecations">Deprecation</a>
+                                        <a class="nav-link" data-bs-toggle="tab" href="#depreciations">Depreciation</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
@@ -65,7 +65,7 @@
                                     <div class="tab-pane" id="files">
                                         @include('dashboard.general_details.files.index')
                                     </div>
-                                    <div class="tab-pane" id="deprecations">
+                                    <div class="tab-pane" id="depreciations">
                                         <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
                                     </div>
                                 </div>

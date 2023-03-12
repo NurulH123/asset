@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeprecationsTable extends Migration
+class CreateDepreciationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateDeprecationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('deprecations', function (Blueprint $table) {
+        Schema::create('depreciations', function (Blueprint $table) {
             $table->id();
             $table->integer('periode');
             $table->integer('asset_value');
-            $table->morphs('deprecationable');
+            $table->morphs('depreciationable');
+            $table->timestamps();
         });
     }
 

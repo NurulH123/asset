@@ -44,4 +44,9 @@ class Component extends Model
     {
         return $this->morphMany(File::class, 'filable');
     }
+
+    public function depreciation()
+    {
+        return $this->morphOne(Depreciation::class, 'depreciationable');
+    }
 }

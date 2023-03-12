@@ -2,8 +2,12 @@
 
 namespace  App\Models;
 
-use App\Models\File;
-use App\Models\{ AssetType, ComponentTransaction };
+use App\Models\{
+    AssetType,
+    ComponentTransaction,
+    File,
+    Depreciation
+};
 use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
@@ -48,5 +52,10 @@ class Asset extends Model
     public function files()
     {
         return $this->morphMany(File::class, 'filable');
+    }
+
+    public function depreciation()
+    {
+        return $this->morphOne(Depreciation::class, 'depreciationable');
     }
 }
