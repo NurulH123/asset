@@ -56,7 +56,7 @@ class DepreciationController extends Controller
             'periode'       => $request->periode,
             'asset_value'   => $request->asset_value,
         ];
-        
+
         return $depreciation->update($data);
     }
 

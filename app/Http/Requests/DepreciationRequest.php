@@ -46,13 +46,13 @@ class DepreciationRequest extends FormRequest
 
     public function messages()
     {
-        $msgCategory = 'Kategori harus diisi';
+        $msgCategory = 'Kolom Kategori Kosong';
 
         return [
             $this->category.'.'.$this->validCategory     => $msgCategory,
-            'periode.required'      => 'Periode kosong',
-            'asset_value.required'  => 'Nilai turunan harus diisi',
-            $this->type.'.required' => 'Tipe kategori harus diisi',
+            'periode.required'      => 'Kolom Periode Kosong',
+            'asset_value.required'  => 'Kolom Nilai Aset Kosong',
+            $this->type.'.required' => 'Kolom Tipe Kategori Kosong',
         ];
     }
 

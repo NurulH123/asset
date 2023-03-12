@@ -4,6 +4,8 @@
             <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
             <div class="modal-body modal-body-md">
                 <h5 class="title mb-4"></h5>
+                <div class="msg-alert mb-1"></div>
+
                 <div class="nk-country-m_depreciation">
                     <form method="post">
                         @csrf @method('PATCH')
@@ -26,7 +28,7 @@
                                 <option value=""></option>
                             </select>
 
-                            <div class="err err_category_id p-1">
+                            <div id="" class="err p-1">
                                 <span class="text-danger"></span>
                             </div>
                         </div>

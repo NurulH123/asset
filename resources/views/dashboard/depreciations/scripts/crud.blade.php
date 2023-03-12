@@ -66,7 +66,7 @@
                 if (type !== '') {
                     $('#m_depreciation #category_id').html(res)
                     $('#m_depreciation #type_category').show()
-                    $('#m_depreciation #labelCategory').html(category+'<span class="text-danger">*</span>')
+                    $('#m_depreciation #labelCategory').html('Tipe Kategori('+category+')<span class="text-danger">*</span>')
                 } else {
                     $('#m_depreciation #category_id').html('<option value=""></option>')
                 }
@@ -198,11 +198,11 @@
         let id = ""
         let method = "POST"
         let category_id = $('#category_id').val();
+        let typeCategory = $('#m_depreciation')
 
         if (methodPatch.length) {
             id = $('#f_edit_depreciation input[name="id"]').val();
             method = "PATCH"
-            console.log();
         }
 
         let data = form.serialize()
@@ -221,12 +221,17 @@
             error: (err) => {
                 const error = err.responseJSON.errors
                 const keys = Object.keys(err.responseJSON.errors);
+                let tagLi = ''
 
                 for (const i in keys) {
                     let msg = error[keys[i]]
 
-                    $(`#m_depreciation form .err_${keys[i]} span`).text(msg[0])
+                    // $(`#m_depreciation form .err_${keys[i]} span`).text(msg[0])
+                    tagLi += '<li>'+msg[0]+'</li>'
                 }
+
+                let ul = '<div class="alert alert-danger"><ul>'+tagLi+'</ul></div>';
+                $('#m_depreciation .msg-alert').html(ul)
             }
         })
     })
