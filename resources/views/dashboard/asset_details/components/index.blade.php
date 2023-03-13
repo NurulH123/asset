@@ -7,7 +7,7 @@
         </div>
         <div class="card card-bordered">
             <div class="card-body">
-                <table id="asset_component" class="table table-bordered table-striped">
+                <table id="asset_component" width="100%" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -15,10 +15,8 @@
                             <th scope="col">Tipe Aset</th>
                             <th scope="col">Pemasok</th>
                             <th scope="col">Lokasi</th>
-                            <th scope="col">Merek</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Terkandung</th>
-                            <th scope="col">Tanggal Beli</th>
+                            <th scope="col">Jumlah Dalam Aset</th>
                         </tr>
                     </thead>
                     <tbody></tbody>

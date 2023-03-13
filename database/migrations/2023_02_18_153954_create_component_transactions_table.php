@@ -22,6 +22,7 @@ class CreateComponentTransactionsTable extends Migration
             $table->boolean('isCheckin')->default(false);
             $table->foreignId('parent_id')->nullable()->constrained('component_transactions')->onDelete('cascade');
             $table->integer('quantity');
+            $table->integer('current_quantity');
             $table->timestamps();
 
             /**

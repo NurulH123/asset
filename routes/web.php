@@ -28,6 +28,7 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      */
     Route::resource('asset', 'AssetController');
     Route::get('asset-maintenance/{id}', 'AssetController@assetMaintenance');
+    Route::get('asset-component/{id}', 'ComponentTransactionController@assetComponent');
 
     /**
      *  ============================================
@@ -52,7 +53,6 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      */
     Route::post('component-transaction/{component}', 'ComponentTransactionController@store')->name('component-transaction.store');
     Route::get('component-transaction/{component}', 'ComponentTransactionController@statusType');
-    Route::get('asset-component/{id}', 'ComponentTransactionController@assetComponent');
     Route::get('component-transaction/{component}/show', 'ComponentTransactionController@componentTransaction');
     Route::get('checkin-component/{transaction}', 'ComponentTransactionController@showCheckin')->name('checkin-component.show');
     Route::post('checkin-component/{transaction}', 'ComponentTransactionController@checkin')->name('checkin-component.store');

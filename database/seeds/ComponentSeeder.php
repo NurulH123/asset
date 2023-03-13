@@ -27,7 +27,7 @@ class ComponentSeeder extends Seeder
                 'cost'              => rand(1000000, 5000000),
                 'quantity'          => 5,
                 'available_quantity'=> 5,
-                'status'            => rand(0, 5),
+                'status'            => $status[rand(0, 5)],
                 'purchase_date'     => '2023-'.'-'.rand(1, 12).'-'.rand(1, 30),
             ]);
         }

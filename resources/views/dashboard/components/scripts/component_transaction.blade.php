@@ -18,12 +18,24 @@
         })
     }
 
+    // Menghapus pesan error
+    function netralMsg() {
+        var errTag = $('#m_checkout_component .err')
 
-    //
+        for (let i = 0; i < errTag.length; i++) {
+            $(errTag[i]).find('span').text('')
+        }
+    }
+
+    $('#m_checkout_component').on('show.bs.modal', function(e) {
+        netralMsg()
+    })
+
     $('#m_checkout_component form').on('submit', this, function(e) {
         e.preventDefault()
-        const id = $(this).find('input[name="id"]').val()
+        netralMsg()
 
+        const id = $(this).find('input[name="id"]').val()
         $.ajax({
             method: 'POST',
             url: "{{ url('component-transaction') }}/" + id,
@@ -35,6 +47,16 @@
 
                     table.ajax.reload()
                     $(this)[0].reset()
+                }
+            },
+            error: (err) => {
+                const error = err.responseJSON.errors
+                const keys = Object.keys(err.responseJSON.errors);
+
+                for (const i in keys) {
+                    let msg = error[keys[i]]
+
+                    $(`#m_checkout_component form .err_${keys[i]} span`).text(msg[0])
                 }
             }
         })

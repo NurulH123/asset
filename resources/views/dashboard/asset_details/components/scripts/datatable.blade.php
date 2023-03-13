@@ -9,10 +9,8 @@
             {data: 'components.type.name',name: 'components.type.name'},
             {data: 'components.supplier.name',name: 'components.supplier.name'},
             {data: 'components.location.name',name: 'components.location.name'},
-            {data: 'components.brand.name',name: 'components.brand.name'},
             {data: 'components.status',name: 'components.status'},
-            {data: 'quantity',name: 'quantity'},
-            {data: 'components.purchase_date',name: 'components.purchase_date'},
+            {data: 'current_quantity',name: 'current_quantity'},
         ],
     })
 </script>

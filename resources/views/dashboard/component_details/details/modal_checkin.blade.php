@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="form-group my-1" id="status_date">
-                                <label class="form-label">Tanggal Checkout</label>
+                                <label class="form-label">Tanggal Check-in</label>
                                 <div class="form-control-wrap">
                                     <div class="form-icon form-icon-right">
                                         <em class="icon ni ni-calendar-alt"></em>

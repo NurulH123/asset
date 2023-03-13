@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ComponentTransaction;
 use App\Http\Requests\CheckinRequest;
 use App\Http\Controllers\Dashboard\Traits\Transaction\Component\Checkin;
+use App\Http\Requests\ComponentTransactionRequest;
 
 class ComponentTransactionController extends Controller
 {
@@ -32,8 +33,8 @@ class ComponentTransactionController extends Controller
         $parentId = $transaction->id;
         $reqQty = $request->quantity;
 
-        $amountNow = $transaction->quantity;// Jumlah yg sekarang
-        $amountQty = $this->amountQtyChildren($reqQty, $parentId);
+        $amountNow = $transaction->quantity;// Jumlah awal
+        $amountQty = $this->amountQtyChildren($reqQty, $parentId); // Jumlah yg sekarang
 
         if ($amountQty > $amountNow) {
             return response()->json([
@@ -42,17 +43,20 @@ class ComponentTransactionController extends Controller
             ], 501);
         }
 
-        $different = $amountNow - $amountQty;
-        $isCheckin = $different == 0 ?? false;
+        $currentQty = $amountNow - $amountQty;
+        $isCheckin = $currentQty == 0 ?? false;
 
 
         /**
          *  ================ PROSES UPDATETING ============
          */
-        // component yg sebelumnya belum di checkin, pd saat dicheckout maka status ISCHECKIN berubah jdi true
+        // component yg sebelumnya belum di checkin, pd saat dicheckout maka akan menambahkan data baru di table component_transaction dg status ISCHECKIN nya true
         // jika jumlah yg dikembalikan sama dengan jumlah total saat meminjam, maka status ISCHECKIN nya menjadi true
-        $transaction->update(['isCheckin' => $isCheckin]);
-        $transaction->components->update(['available_quantity' => $availableQtyComponent + $request->quantity]);
+        $transaction->update([
+            'isCheckin' => $isCheckin,
+            'current_quantity' => $currentQty,
+        ]);
+        $transaction->components->update(['available_quantity' => $availableQtyComponent + $request->quantity]); // update jumlah yg tersedia di table components
 
         // Menambahkan data checkin
         $data = $request->all();
@@ -60,6 +64,7 @@ class ComponentTransactionController extends Controller
         $data['status'] = 'checkin';
         $data['isCheckin'] = true;
         $data['parent_id'] = $transaction->id;
+        $data['current_quantity'] = $currentQty;
 
         // $createTransaction = $transaction->child()->create($data);
         $createTransaction = ComponentTransaction::create($data);
@@ -77,16 +82,12 @@ class ComponentTransactionController extends Controller
         return $component;
     }
 
-    public function store(Request $request, Component $component)
+    public function store(ComponentTransactionRequest $request, Component $component)
     {
         $status = $component->isCheckin;
         $availableQty = $component->available_quantity;
 
-        $data = $this->validate($request, [
-            'asset_id'      => 'required',
-            'status_date'   => 'required',
-            'quantity'      => 'required',
-        ]);
+        $data = $request->validated();
 
         if ($request->quantity > $availableQty) {
             return response()->json([
@@ -97,6 +98,7 @@ class ComponentTransactionController extends Controller
 
         $data['status_date'] = date('Y-m-d', strtotime($data['status_date']));
         $data['status'] = "checkout";
+        $data['current_quantity'] = $data['quantity'];
 
         $transaction = $component->transaction()->create($data);
         $component->update([
@@ -109,7 +111,11 @@ class ComponentTransactionController extends Controller
 
     public function assetComponent($assetId)
     {
-        $assetComponent = ComponentTransaction::where('asset_id', $assetId)
+        $assetComponent = ComponentTransaction::where([
+                            ['asset_id', $assetId],
+                            ['status', 'checkout'],
+                            ['isCheckin', false]
+                        ])
                         ->with([
                             'components.type',
                             'components.supplier',
