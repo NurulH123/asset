@@ -19,7 +19,7 @@ Route::view('/', 'auth.login')->middleware('guest');
 Route::view('/welcome', 'welcome');
 
 Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
-    Route::view('/dashboard', 'dashboard.dashboard.index');
+    Route::resource('/dashboard', 'DashboardController');
 
     /**
      *  ============================================

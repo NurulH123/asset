@@ -169,7 +169,7 @@
                                             <option value="archived">Diarshipkan</option>
                                             <option value="broken">Rusak</option>
                                             <option value="lost">Hilang</option>
-                                            <option value="out_maintenance">Rusak</option>
+                                            <option value="out_maintenance">Selesai Maintenance</option>
                                         </select>
                                     </div>
 

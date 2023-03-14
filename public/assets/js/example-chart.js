@@ -3,12 +3,12 @@
 !function (NioApp, $) {
   "use strict";
 
-  //////// for developer - barchart //////// 
-  // Avilable options to pass from outside 
+  //////// for developer - barchart ////////
+  // Avilable options to pass from outside
   // labels: array,
   // stacked: false - boolean,
   // legend: false - boolean,
-  // dataUnit: string, (Used in tooltip or other section for display) 
+  // dataUnit: string, (Used in tooltip or other section for display)
   // datasets: [{label : string, color: string (color code with # or other format), data: array}]
   var barChartData = {
     labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
@@ -154,11 +154,11 @@
   // init bar chart
   barChart();
 
-  //////// for developer - linechart //////// 
-  // Avilable options to pass from outside 
+  //////// for developer - linechart ////////
+  // Avilable options to pass from outside
   // labels: array,
   // legend: false - boolean,
-  // dataUnit: string, (Used in tooltip or other section for display) 
+  // dataUnit: string, (Used in tooltip or other section for display)
   // datasets: [{label : string, color: string (color code with # or other format), data: array}]
   var solidLineChart = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -307,11 +307,11 @@
   // init line chart
   lineChart();
 
-  //////// for developer - pieChart //////// 
-  // Avilable options to pass from outside 
+  //////// for developer - pieChart ////////
+  // Avilable options to pass from outside
   // labels: array,
   // legend: false - boolean,
-  // dataUnit: string, (Used in tooltip or other section for display) 
+  // dataUnit: string, (Used in tooltip or other section for display)
   // datasets: [{label : string, color: string (color code with # or other format), data: array}]
   var pieChartData = {
     labels: ["Send", "Receive", "Withdraw"],
