@@ -37,7 +37,12 @@ class AssetController extends Controller
 
     public function show(Asset $asset)
     {
-        return view('dashboard.asset_details.index', compact('asset'));
+        $data = [
+            'type'  => $asset,
+            'asset' => $asset,
+        ];
+        
+        return view('dashboard.asset_details.index', $data);
     }
 
     public function store(AssetRequest $request)

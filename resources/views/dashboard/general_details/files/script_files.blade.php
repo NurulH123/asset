@@ -21,41 +21,41 @@
 
     function addFile() {
         $('#m_files').modal('show')
-
-        $('#m_files form').submit(function(e) {
-            e.preventDefault()
-
-            const form = document.getElementById('f_files')
-            const name = $('#f_files input[name="name"]').val()
-            const file = $('#f_files input[name="file"]').val()
-
-
-            // Proses pengiriman data ke server
-            $.ajax({
-                method: 'POST',
-                processData: false,
-                contentType: false,
-                url: "{{ route('files.store') }}",
-                data: new FormData(form),
-                success: (res) => {
-                    $('#m_files').modal('hide')
-
-                    tableFiles.ajax.reload()
-                    form.reset()
-                },
-                error: (err) => {
-                    const error = err.responseJSON.errors
-                    const keys = Object.keys(err.responseJSON.errors);
-
-                    for (const i in keys) {
-                        let msg = error[keys[i]]
-
-                        $(`#m_files form .err_${keys[i]} span`).text(msg[0])
-                    }
-                }
-            })
-        })
     }
+
+    $('#m_files form').submit(function(e) {
+        e.preventDefault()
+
+        const form = document.getElementById('f_files')
+        const name = $('#f_files input[name="name"]').val()
+        const file = $('#f_files input[name="file"]').val()
+
+
+        // Proses pengiriman data ke server
+        $.ajax({
+            method: 'POST',
+            processData: false,
+            contentType: false,
+            url: "{{ route('files.store') }}",
+            data: new FormData(form),
+            success: (res) => {
+                $('#m_files').modal('hide')
+
+                tableFiles.ajax.reload()
+                form.reset()
+            },
+            error: (err) => {
+                const error = err.responseJSON.errors
+                const keys = Object.keys(err.responseJSON.errors);
+
+                for (const i in keys) {
+                    let msg = error[keys[i]]
+
+                    $(`#m_files form .err_${keys[i]} span`).text(msg[0])
+                }
+            }
+        })
+    })
 
     function remove(id) {
         Swal.fire({

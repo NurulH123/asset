@@ -70,11 +70,12 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
 
     /**
      *  ============================================
-     *  |----------------- COMPONENT --------------|
+     *  |---------------- DEPRECIATION ------------|
      *  ============================================
      */
-    Route::resource('depreciations', 'DepreciationController');
+    Route::resource('depreciations', 'DepreciationController')->except('show');
     Route::get('depreciations/type/{type}', 'DepreciationController@getCategory');
+    Route::get('depreciations/data/accumulation', 'DepreciationController@dataList');
 
     /**
      *  ============================================

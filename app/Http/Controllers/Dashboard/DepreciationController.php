@@ -2,34 +2,25 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Asset;
-use App\Models\AssetType;
 use App\Models\Depreciation;
-use App\Models\Maintenance;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\Dashboard\Traits\Depreciation as TraitDeprecation;
 use App\Http\Requests\DepreciationRequest;
+use App\Http\Controllers\Dashboard\Traits\Deprecation\ProcessingData;
+use App\Http\Controllers\Dashboard\Traits\Deprecation\DepreciationProperty;
 
 class DepreciationController extends Controller
 {
-    use TraitDeprecation;
+    use DepreciationProperty, ProcessingData;
 
     public function index()
     {
         $datas = Depreciation::all();
 
         if (request()->ajax()) {
-            return $this->datatables($datas);
+            return $this->dataDeprecation($datas);
         }
 
         return view('dashboard.depreciations.index', $datas);
-    }
-
-    public function show(Depreciation $depreciations)
-    {
-        return view('dashboard.asset_details.index', compact('asset'));
     }
 
     public function store(DepreciationRequest $request)

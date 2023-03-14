@@ -3,11 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Controllers\Dashboard\Traits\Depreciation;
+use App\Http\Controllers\Dashboard\Traits\Deprecation\DepreciationProperty;
 
 class DepreciationRequest extends FormRequest
 {
-    use Depreciation;
+    use DepreciationProperty;
 
     protected $type = '';
     protected $method = '';

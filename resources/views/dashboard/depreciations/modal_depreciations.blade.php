@@ -33,14 +33,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="default-01">Periode (bulan)<span class="text-danger">*</span></label>
+                            <label class="form-label" for="default-01">Periode (tahun)<span class="text-danger">*</span></label>
                             <input class="form-control" name="periode" type="number" class="form-controll">
                             <div class="err err_periode p-1">
                                 <span class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="default-01">Nilai Aset<span class="text-danger">*</span></label>
+                            <label class="form-label" for="default-01">Nilai Residu<span class="text-danger">*</span></label>
                             <input class="form-control" name="asset_value" id="asset_value" type="number" class="form-controll">
 
                             <div class="err err_asset_value p-1">

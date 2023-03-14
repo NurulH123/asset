@@ -42,6 +42,7 @@ class ComponentController extends Controller
     public function show(Component $component)
     {
         $datas = [
+            'type'          => $component,
             'component'     => $component,
             'dt_components' => Component::all(),
             'dt_assets'     => Asset::all(),

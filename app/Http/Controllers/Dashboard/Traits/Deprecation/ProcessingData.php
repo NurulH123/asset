@@ -1,47 +1,33 @@
 <?php
-namespace App\Http\Controllers\Dashboard\Traits;
+namespace App\Http\Controllers\Dashboard\Traits\Deprecation;
 
-use App\Models\Asset;
-use App\Models\Component;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Dashboard\Traits\Deprecation\{DepreciationProperty, AccumulationData};
 
-/**
- *
- */
-trait Depreciation
+trait ProcessingData
 {
-    protected function getCategory($type)
+    use DepreciationProperty, AccumulationData;
+
+    protected function dataList()
     {
-        $categories = $type === 'asset' ?
-                Asset::doesntHave('depreciation')->get(['id','name']) :
-                Component::doesntHave('depreciation')->get(['id','name']);
+        $data = [
+            request('type') => request('typeId'),
+            'category'      => request('category'),
+        ];
+        $request = new Request($data);
+        $type = $this->typeCategory($request); // Mengembalikan Object Asset atau Component
+        $datas = $this->dataAcummulation($type);
 
-        return view('dashboard.depreciations.select_options', compact('categories'));
-    }
-
-    protected function typeCategory(Request $request)
-    {
-        $category = $request->category;
-        $type = $this->isAsset($category) ?
-                    Asset::find($request->asset_id) :
-                    Component::find($request->component_id);
-
-        return $type;
+        return $this->listData($datas);
     }
 
     /**
-     *  Mengecek type category yg diberikan
-     *  @return boolean
+     *
+     *  Mengambil data deprecation dan mengembalikan datatables
+     *
+     *  @return datatables
      */
-    protected function isAsset($category)
-    {
-        return $category === 'asset' ?? false;
-    }
-
-    /**
-     * 
-     */
-    protected function datatables($datas)
+    protected function dataDeprecation($datas)
     {
         return datatables($datas)
                 ->addIndexColumn()
@@ -69,4 +55,3 @@ trait Depreciation
                 ->make(true);
     }
 }
-

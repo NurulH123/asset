@@ -25,7 +25,7 @@ class AssetSeeder extends Seeder
                 'location_id'   => rand(1, 2),
                 'asset_type_id' => rand(1, 2),
                 'warranty'      => rand(1, 5),
-                'cost'          => rand(1000000, 5000000),
+                'cost'          => rand(5000000, 10000000),
                 'status'        => $status[rand(0, 5)],
                 'purchase_date' => '2023-'.'-'.rand(1, 12).'-'.rand(1, 30),
             ]);

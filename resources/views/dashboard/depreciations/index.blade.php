@@ -31,10 +31,10 @@
                                   <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Harga</th>
+                                    <th scope="col">Harga Perolehan</th>
                                     <th scope="col">Periode</th>
                                     <th scope="col">Kategori</th>
-                                    <th scope="col">Nilai Aset</th>
+                                    <th scope="col">Nilai Residu</th>
                                     <th scope="col">Aksi</th>
                                   </tr>
                                 </thead>
