@@ -153,4 +153,17 @@ class ComponentTransactionController extends Controller
                 ->make(true);
     }
 
+    public function componentActivity()
+    {
+        $activity = ComponentTransaction::with(['assets:id,name', 'components:id,name']);
+
+        return datatables($activity)
+                ->editColumn('status', function($query) {
+                    return $query->status === 'checkout' ?
+                                '<span class="badge bg-warning">'.$query->status.'</span>' :
+                                '<span class="badge bg-info">'.$query->status.'</span>';
+                })
+                ->rawColumns(['status'])
+                ->make(true);
+    }
 }

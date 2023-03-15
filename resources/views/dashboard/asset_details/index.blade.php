@@ -1,6 +1,35 @@
 @extends('layouts.main')
 @section('title', 'Detail Aset')
 
+@php
+    $status = '';
+
+    switch ($asset->status) {
+        case 'pending':
+           $status = 'Pending';
+            break;
+
+        case 'archived':
+            $status = 'Diarsipkan';
+            break;
+
+        case 'broken':
+            $status = 'Rusak';
+            break;
+
+        case 'lost':
+            $status = 'Hilang';
+            break;
+
+        case 'out_of_repair':
+            $status = 'Selesai Perbaikan';
+            break;
+
+        default:
+            $status = 'Siap Digunaka';
+        break;
+    }
+@endphp
 @section('content')
 <!-- content @s -->
 <div class="nk-content ">
@@ -21,7 +50,7 @@
                             <div class="detail-asset d-flex p-4 mb-3 justify-content-between align-items-center">
                                 <div class="asset-title">
                                     <h2 class="text-success"><b>{{ $asset->name }} ({{ $asset->asset_tag }})</b></h2>
-                                    <h5 class="text-gray">{{ $asset->type->name }} <b>.</b> {{ $asset->status }}</h5>
+                                    <h5 class="text-gray">{{ $asset->type->name }} <b>.</b> {{ $status }}</h5>
                                 </div>
                                 {{-- <div class="card card-bordered w-20">
                                     <img src="{{ (!empty($asset->photo)) ? asset($asset->photo) : asset('/assets/images/noimage.png') }}" class="card-img-top" alt="">

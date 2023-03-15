@@ -19,11 +19,6 @@
         const colors = response.colors;
         const labels = Object.keys(resDatas)
 
-        console.log(resDatas);
-        console.log(datas);
-        console.log(colors);
-        console.log(labels);
-
         const data = {
             labels: labels,
             dataUnit: 'BTC',

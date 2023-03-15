@@ -39,4 +39,18 @@ class AssetTransactionController extends Controller
 
         return $this->datatableNonAction($transaction);
     }
+
+    public function assetActivity()
+    {
+        $activity = AssetTransaction::with(['asset:id,name', 'employee:id,name'])->get();
+
+        return datatables($activity)
+                ->editColumn('status', function($query) {
+                    return $query->status === 'checkout' ?
+                                '<span class="badge bg-warning">'.$query->status.'</span>' :
+                                '<span class="badge bg-info">'.$query->status.'</span>';
+                })
+                ->rawColumns(['status'])
+                ->make(true);
+    }
 }

@@ -22,6 +22,7 @@
                 <div class="nk-block">
                     @include('dashboard.dashboard.properties.dashboard')
                     @include('dashboard.dashboard.properties.chart')
+                    @include('dashboard.dashboard.properties.recent_activity')
                     {{-- <button class="eg-toastr-top-left">Toaster</button> --}}
                 </div><!-- .nk-block -->
             </div>
@@ -33,4 +34,5 @@
 
 @push('scripts_bottom')
     @include('dashboard.dashboard.scripts.chart')
+    @include('dashboard.dashboard.scripts.recent_activity')
 @endpush
