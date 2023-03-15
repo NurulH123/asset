@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\File;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\Dashboard\Traits\File as TraitsFile;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Dashboard\Traits\File as TraitsFile;
+use Illuminate\Support\Facades\File as FacadesFile;
 
 class FileController extends Controller
 {
@@ -58,7 +60,15 @@ class FileController extends Controller
 
     public function destroy(File $file)
     {
-        return $file->delete();
+        $path = 'upload/files/'.$file->file;
+        $public_path = public_path($path);
+        $deletedFile = unlink($public_path);
+
+        if ($deletedFile) {
+            $file->delete();
+
+            return 'File deleted';
+        }
     }
 
     public function download($file)
