@@ -96,7 +96,12 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-sm btn-danger"><em class="icon ni ni-signout"></em><span>Sign out</span></button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

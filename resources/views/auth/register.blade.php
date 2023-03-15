@@ -41,7 +41,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form action="html/pages/auths/auth-success-v2.html">
+                                <form action="{{ route('register') }}" method="post">
+                                    @csrf
+                                    
                                     <div class="form-group">
                                         <label class="form-label" for="name">Name</label>
                                         <div class="form-control-wrap">

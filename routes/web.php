@@ -128,6 +128,17 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      *  ============================================
      */
     Route::resource('employee', 'EmployeeController');
+
+    /**
+     *  ============================================
+     *  |----------------- SETTING ----------------|
+     *  ============================================
+     */
+    Route::get('settings', 'SettingController@index')->name('settings.index');
+    Route::get('settings/roles', 'SettingController@listRole')->name('settings.list-role');
+    Route::get('settings/permissions', 'SettingController@listPermission')->name('settings.list-permission');
+    Route::post('settings/add-role', 'SettingController@addRole')->name('settings.add-role');
+    Route::post('settings/add-permission', 'SettingController@addPermission')->name('settings.add-permission');
 });
 
 Auth::routes();

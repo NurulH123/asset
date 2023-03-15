@@ -107,9 +107,9 @@
                                         <button class="btn btn-lg btn-primary btn-block">Login</button>
                                     </div>
                                 </form><!-- form -->
-                                {{-- <div class="form-note-s2 pt-4 pb-2">
+                                <div class="form-note-s2 pt-4 pb-2">
                                     Belum Punya Akun? <a href="{{ url('/register') }}">Buat Akun</a>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
