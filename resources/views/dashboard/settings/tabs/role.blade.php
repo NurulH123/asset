@@ -9,7 +9,7 @@
                 </div>
                 <hr>
                 <div class="card-body">
-                    <form id="m_role" action="{{ route('settings.add-role') }}" method="post">
+                    <form id="f_role" action="{{ route('settings.add-role') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-sm-6">
@@ -18,6 +18,10 @@
                                     <div class="form-control-wrap">
                                         <input name="name" type="text" class="form-control">
                                     </div>
+                                </div>
+
+                                <div class="mt-1">
+                                    <span class="text-danger err err_name"></span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -30,6 +34,10 @@
                                                 <option value="{{ $permission->name }}">{{ $permission->caption }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+
+                                    <div class="mt-1">
+                                        <span class="text-danger err err_permission"></span>
                                     </div>
                                 </div>
                             </div>
@@ -73,3 +81,4 @@
         </div>
     </div>
 </div>
+

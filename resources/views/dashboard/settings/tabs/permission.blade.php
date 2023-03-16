@@ -4,7 +4,7 @@
             <div class="card card-bordered">
                 <div class="card-inner">
                     <div class="d-flex justify-content-between my-4">
-                        <h5 class="card-title">List Role</h5>
+                        <h5 class="card-title">List Permission</h5>
                         <button onclick="addPermission()" class="btn btn-primary">Tambah Permission</button>
                     </div>
                     <div class="row">

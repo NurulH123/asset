@@ -51,6 +51,8 @@
     </div>
 </div>
 <!-- content @e -->
+@include('dashboard.settings.modals.edit_role')
+@include('dashboard.settings.modals.edit_permission')
 @include('dashboard.settings.modals.add_permission')
 @endsection
 

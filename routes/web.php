@@ -134,11 +134,21 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      *  |----------------- SETTING ----------------|
      *  ============================================
      */
-    Route::get('settings', 'SettingController@index')->name('settings.index');
-    Route::get('settings/roles', 'SettingController@listRole')->name('settings.list-role');
-    Route::get('settings/permissions', 'SettingController@listPermission')->name('settings.list-permission');
-    Route::post('settings/add-role', 'SettingController@addRole')->name('settings.add-role');
-    Route::post('settings/add-permission', 'SettingController@addPermission')->name('settings.add-permission');
+    Route::prefix('settings')->group(function() {
+        Route::get('/', 'SettingController@index')->name('settings.index');
+
+        Route::get('roles', 'SettingController@listRole')->name('settings.list-role');
+        Route::post('add-role', 'SettingController@addRole')->name('settings.add-role');
+        Route::get('edit-role/{id}', 'SettingController@editRole')->name('settings.edit-role');
+        Route::patch('update-role/{role}', 'SettingController@updateRole')->name('settings.update-role');
+        Route::delete('delete-role/{role}', 'SettingController@deleteRole')->name('settings.delete-role');
+
+        Route::get('permissions', 'SettingController@listPermission')->name('settings.list-permission');
+        Route::post('add-permission', 'SettingController@addPermission')->name('settings.add-permission');
+        Route::get('edit-permission/{permission}', 'SettingController@editPermission')->name('settings.edit-permission');
+        Route::patch('update-permission/{permission}', 'SettingController@updatePermission')->name('settings.update-permission');
+        Route::delete('delete-permission/{permission}', 'SettingController@deletePermission')->name('settings.delete-permission');
+    });
 });
 
 Auth::routes();

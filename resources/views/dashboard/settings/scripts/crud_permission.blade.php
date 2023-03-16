@@ -41,4 +41,85 @@
             })
         })
     }
+
+    /**
+     *  =========================================
+     *  =============== PROSES UPDATE ===========
+     *  =========================================
+     *
+    */
+    function editPermission(id) {
+        $('#m_edit_permission').modal('show')
+
+        $.ajax({
+            url: "{{ url('settings/edit-permission') }}/" + id,
+            success: (res) => {
+                $('#m_edit_permission input[name="id"]').val(res.id)
+                $('#m_edit_permission input[name="name"]').val(res.caption)
+            }
+        })
+    }
+
+    $('#m_edit_permission #f_edit_permission').submit(function(e) {
+        e.preventDefault()
+        const id = $('#f_edit_permission input[name="id"]').val()
+
+        console.log('id :',id);
+        $.ajax({
+            method: 'PATCH',
+            url: "{{ url('settings/update-permission') }}/" + id,
+            data: $(this).serialize(),
+            success: (res) => {
+                $('#m_edit_permission').modal('hide')
+
+                tablePermission.ajax.reload()
+                $(this)[0].reset();
+            },
+            error: (err) => {
+                const msg = err.responseJSON.errors
+
+                console.log(err);
+                for (const key in msg) {
+                    $(`#f_edit_permission span.err_${key}`).text(msg[key][0])
+                }
+            }
+        })
+    })
+
+
+    /**
+     *  =========================================
+     *  =============== PROSES DELETE ===========
+     *  =========================================
+     *
+    */
+    function removePermission(id) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Apakah Anda yakin akan menghapus?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: `Tidak`,
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: "DELETE",
+                    url: "{{ url('settings/delete-permission') }}/" + id,
+                    success: (res) => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Data berhasil dihapus',
+                            timer: 2000
+                        })
+
+                        tablePermission.ajax.reload()
+                    }
+                })
+
+            }
+        })
+   }
 </script>

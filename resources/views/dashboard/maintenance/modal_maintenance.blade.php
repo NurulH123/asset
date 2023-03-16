@@ -57,7 +57,7 @@
                             <label class="form-label" for="default-01">Status<span class="text-danger">*</span></label>
                             <select class="form-select" name="type" id="type">
                                 <option value=""></option>
-                                <option value="maintenance">Maintenance</option>
+                                <option value="maintenance">Pemeliharaan</option>
                                 <option value="repair">Memperbaiki</option>
                                 <option value="upgrade">Upgrade</option>
                                 <option value="testing">Pengujian</option>
