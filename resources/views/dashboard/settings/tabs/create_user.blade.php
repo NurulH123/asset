@@ -91,14 +91,18 @@
             </div>
             <div class="col-lg-7">
                 <div class="form-group">
+                    <label class="form-label">Role</label>
                     <div class="form-control-wrap">
-                        <select name="role" class="form-select js-select2" data-search="on">
+                        <select name="roles[]" class="form-select js-select2" multiple="multiple" data-placeholder="Pilih Role">
                             <option value=""></option>
-                            <option value="admin">Admin</option>
-                            <option value="hr">HR</option>
-                            <option value="moderator">Moderator</option>
-                            <option value="ga">GA</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->name }}">{{ $role->caption }}</option>
+                            @endforeach
                         </select>
+                    </div>
+
+                    <div class="mt-1">
+                        <span class="text-danger err err_role"></span>
                     </div>
                 </div>
             </div>

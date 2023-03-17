@@ -14,9 +14,15 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name'      => 'admin',
-            'email'     => 'admin@gmail.com',
+            'name'      => 'Master',
+            'email'     => 'master@gmail.com',
             'password'  => Hash::make('123456'),
-        ]);
+        ])->syncRoles('master');
+
+        User::create([
+            'name'      => 'Super Admin',
+            'email'     => 'super_admin@gmail.com',
+            'password'  => Hash::make('123456'),
+        ])->syncRoles('super_admin');
     }
 }

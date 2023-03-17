@@ -63,8 +63,8 @@ class RegisterController extends Controller
         $data = $request->all();
         $user = $this->create($data);
 
-        if (!is_null($request->role)) {
-            $user->assignRole($request->role);
+        if (!is_null($request->roles)) {
+            $user->syncRoles($request->roles);
         }
 
         return redirect()->back()->with('success', 'Data berhasil disimpan.');

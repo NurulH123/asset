@@ -14,11 +14,13 @@
                         <div class="nk-block-head-content">
                             <div class="toggle-wrap nk-block-tools-toggle">
                                 <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                                <div class="toggle-expand-content" data-content="pageMenu">
-                                    <ul class="nk-block-tools g-3">
-                                        <li class="nk-block-tools-opt"><button onclick="addEmployee()" class="btn btn-primary"><em class="icon ni ni-plus fw-bold"></em><span class="fw-bold">Tambah Karyawan</span></button></li>
-                                    </ul>
-                                </div>
+                                @can('tambah_karyawan')
+                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                        <ul class="nk-block-tools g-3">
+                                            <li class="nk-block-tools-opt"><button onclick="addEmployee()" class="btn btn-primary"><em class="icon ni ni-plus fw-bold"></em><span class="fw-bold">Tambah Karyawan</span></button></li>
+                                        </ul>
+                                    </div>
+                                @endcan
                             </div>
                         </div><!-- .nk-block-head-content -->
                     </div><!-- .nk-block-between -->
@@ -34,7 +36,9 @@
                                     <th scope="col">Departemen</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">No Hp</th>
-                                    <th scope="col">Aksi</th>
+                                    @canany(['update_karyawan', 'delete_karyawan'])
+                                        <th scope="col">Aksi</th>
+                                    @endcanany
                                   </tr>
                                 </thead>
                                 <tbody></tbody>

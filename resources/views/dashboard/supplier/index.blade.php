@@ -14,11 +14,13 @@
                         <div class="nk-block-head-content">
                             <div class="toggle-wrap nk-block-tools-toggle">
                                 <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                                <div class="toggle-expand-content" data-content="pageMenu">
-                                    <ul class="nk-block-tools g-3">
-                                        <li class="nk-block-tools-opt"><button onclick="addSupplier()" class="btn btn-primary"><em class="icon ni ni-plus fw-bold"></em><span class="fw-bold">Tambah Pemasok</span></button></li>
-                                    </ul>
-                                </div>
+                                @can('tambah_pemasok')
+                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                        <ul class="nk-block-tools g-3">
+                                            <li class="nk-block-tools-opt"><button onclick="addSupplier()" class="btn btn-primary"><em class="icon ni ni-plus fw-bold"></em><span class="fw-bold">Tambah Pemasok</span></button></li>
+                                        </ul>
+                                    </div>
+                                @endcan
                             </div>
                         </div><!-- .nk-block-head-content -->
                     </div><!-- .nk-block-between -->
@@ -35,7 +37,9 @@
                                     <th scope="col">No Hp</th>
                                     <th scope="col">Kota</th>
                                     <th scope="col">Alamat</th>
-                                    <th scope="col">Aksi</th>
+                                    @canany(['update_pemasok', 'delete_pemasok'])
+                                        <th scope="col">Aksi</th>
+                                    @endcanany
                                   </tr>
                                 </thead>
                                 <tbody></tbody>

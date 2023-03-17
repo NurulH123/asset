@@ -49,8 +49,13 @@ trait ProcessingData
                 ->addColumn('action', function($query) {
                     $id = $query->id;
 
-                    return '<button onclick="edit('. $id .')" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Ubah"><em class="icon ni ni-edit"></em> Ubah</button> '.
-                    '<button onclick="remove('. $id .')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus"><em class="icon ni ni-trash"></em> Hapus</button>';
+                    return '
+                    @can("update_depresiasi")
+                        <button onclick="edit('. $id .')" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Ubah"><em class="icon ni ni-edit"></em> Ubah</button>
+                    @endcan'.
+                    '@can("delete_depresiasi")
+                        <button onclick="remove('. $id .')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus"><em class="icon ni ni-trash"></em> Hapus</button>
+                    @endcan';
                 })
                 ->make(true);
     }

@@ -18,6 +18,8 @@ class AssetController extends Controller
 {
     public function index()
     {
+        
+
         $assets = Asset::with(['brand', 'supplier', 'location'])->get();
 
         $datas = [
@@ -41,7 +43,7 @@ class AssetController extends Controller
             'type'  => $asset,
             'asset' => $asset,
         ];
-        
+
         return view('dashboard.asset_details.index', $data);
     }
 

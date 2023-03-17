@@ -88,7 +88,7 @@ trait RoleTrait
 
     public function listRole()
     {
-        $permission = Role::with('permissions')->get();
+        $permission = Role::with('permissions')->whereNotIn('name', ['master', 'super_admin'])->get();
 
         return datatables($permission)
                 ->addIndexColumn()
