@@ -18,7 +18,6 @@ class AssetController extends Controller
 {
     public function index()
     {
-        
 
         $assets = Asset::with(['brand', 'supplier', 'location'])->get();
 

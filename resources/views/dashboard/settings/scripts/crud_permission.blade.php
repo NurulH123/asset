@@ -10,10 +10,23 @@
         ],
     })
 
+    /**
+     *  =========================================
+     *  =============== PROSES TAMBAH ===========
+     *  =========================================
+     *
+    */
     function addPermission() {
-        $('#m_permission').modal('show')
+        $('#m_add_permission').modal('show')
 
-        $('#m_permission form').off('submit').submit(function(e) {
+        $.ajax({
+            url: location.href,
+            success: (res) => {
+                $('#m_add_permission select[name="group_id"]').html(res)
+            }
+        })
+
+        $('#m_add_permission form').off('submit').submit(function(e) {
             e.preventDefault()
 
             $.ajax({
@@ -21,7 +34,7 @@
                 url: `${location.origin}/settings/add-permission`,
                 data: $(this).serialize(),
                 success: (res) => {
-                    $('#m_permission').modal('hide')
+                    $('#m_add_permission').modal('hide')
 
                     Swal.fire({
                         icon: 'success',
@@ -35,7 +48,7 @@
                 error: (err) => {
                     var error = err.responseJSON.errors.name;
 
-                    $('#m_permission span.err_name').text(error[0])
+                    $('#m_add_permission span.err_name').text(error[0])
                     console.log(err);
                 }
             })

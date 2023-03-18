@@ -43,15 +43,8 @@ class Controller extends BaseController
                 ->addColumn('action', function($q) {
                     $id = $q->id;
 
-                    return '
-                    @canany(["update_karyawan", "update_pemasok", "update_tipe_aset", "update_departemen", "update_lokasi", "update_merek", "update_pemeliharaan"])
-                        <button onclick="edit('. $id .')" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Ubah"><em class="icon ni ni-edit"></em> Ubah</button>
-                    @endcanany'.'
-                    @canany(["delete_karyawan", "delete_pemasok", "delete_tipe_aset", "delete_departemen", "delete_lokasi", "delete_merek", "delete_pemeliharaan"])
-                        <button onclick="remove('. $id .')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus"><em class="icon ni ni-trash"></em> Hapus</button>;
-                    @endcanany';
-
-
+                    return '<button onclick="edit('. $id .')" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Ubah"><em class="icon ni ni-edit"></em> Ubah</button> '.
+                    '<button onclick="remove('. $id .')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus"><em class="icon ni ni-trash"></em> Hapus</button>';
                 })
                 ->make(true);
     }
@@ -81,30 +74,22 @@ class Controller extends BaseController
                                         <a href="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link text-base" data-bs-toggle="dropdown" data-offset="0,1"><span>...</span></a>
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                                             <ul class="language-list">
-                                                @canany(["transaksi_komponen", "transaksi_aset"])
-                                                    '.$liCheckout.'
-                                                @endcanany
-                                                @canany(["akses_detail_komponen", "akses_detail_aset])
-                                                    <li>
-                                                        <a href="'.$link.'" class="language-item">
-                                                            <span class="language-name">Detail</span>
-                                                        </a>
-                                                    </li>
-                                                @endcanany
-                                                @canany(["update_komponen", "update_aset])
-                                                    <li>
-                                                        <a onclick="edit('.$q->id.')" class="language-item">
-                                                            <span class="language-name">Edit</span>
-                                                        </a>
-                                                    </li>
-                                                @endcanany
-                                                @canany(["delete_komponen", "delete_aset"])
-                                                    <li>
-                                                        <a onclick="remove('.$q->id.')" class="language-item">
-                                                            <span class="language-name">Delete</span>
-                                                        </a>
-                                                    </li>
-                                                @endcanany
+                                                '.$liCheckout.'
+                                                <li>
+                                                    <a href="'.$link.'" class="language-item">
+                                                        <span class="language-name">Detail</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a onclick="edit('.$q->id.')" class="language-item">
+                                                        <span class="language-name">Edit</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a onclick="remove('.$q->id.')" class="language-item">
+                                                        <span class="language-name">Delete</span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li>

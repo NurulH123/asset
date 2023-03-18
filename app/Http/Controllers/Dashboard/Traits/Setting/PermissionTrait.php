@@ -12,11 +12,19 @@ trait PermissionTrait
 {
     public function addPermission(Request $request)
     {
-        $this->validate($request, ['name' => 'required'], ['name.required' => 'Nama harus diisi']);
+        $this->validate($request,
+            ['name' => 'required'],
+            ['name.required' => 'Nama harus diisi']
+        );
+
         $data = [
             'name'      => Str::snake($request->name),
             'caption'   => $request->name,
         ];
+
+        if (!is_null($request->group_id)) {
+            $data['group_id']   = $request->group_id;
+        }
 
         $permission = Permission::create($data);
 

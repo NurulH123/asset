@@ -64,7 +64,7 @@
     <script src="./assets/js/bundle.js?ver=3.1.2"></script>
     <script src="./assets/js/scripts.js?ver=3.1.2"></script>
     <script src="{{ asset('assets/js/charts/gd-default.js?ver=3.1.2') }}"></script>
-    
+
     <script>
         // Ajax send csrf token
         $.ajaxSetup({
@@ -72,8 +72,18 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
         });
-    </script>
+        //***********************************//
+        // For select 2
+        //***********************************//
+        $(".select2").select2();
 
+        /*datwpicker*/
+        $('.mydatepicker').datepicker();
+        $('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
     @stack('scripts_bottom')
 </body>
 </html>

@@ -26,9 +26,12 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      *  |----------------- ASSET ------------------|
      *  ============================================
      */
-    Route::resource('asset', 'AssetController');
-    Route::get('asset-maintenance/{id}', 'AssetController@assetMaintenance');
-    Route::get('asset-component/{id}', 'ComponentTransactionController@assetComponent');
+    Route::group(['middleware' => ['can:manajemen_aset']], function() {
+        Route::resource('asset', 'AssetController');
+        Route::get('asset-maintenance/{id}', 'AssetController@assetMaintenance');
+        Route::get('asset-component/{id}', 'ComponentTransactionController@assetComponent');
+
+    });
 
     /**
      *  ============================================
@@ -45,7 +48,7 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      *  |----------------- COMPONENT --------------|
      *  ============================================
      */
-    Route::resource('component', 'ComponentController');
+    Route::resource('component', 'ComponentController')->middleware('can:manajemen_komponen');
 
     /**
      *  ============================================
@@ -58,7 +61,6 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
     Route::get('checkin-component/{transaction}', 'ComponentTransactionController@showCheckin')->name('checkin-component.show');
     Route::post('checkin-component/{transaction}', 'ComponentTransactionController@checkin')->name('checkin-component.store');
     Route::get('component-activity', 'ComponentTransactionController@componentActivity');
-
 
     /**
      *  ============================================
@@ -75,66 +77,68 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
      *  |---------------- DEPRECIATION ------------|
      *  ============================================
      */
-    Route::resource('depreciations', 'DepreciationController')->except('show');
-    Route::get('depreciations/type/{type}', 'DepreciationController@getCategory');
-    Route::get('depreciations/data/accumulation', 'DepreciationController@dataList');
+    Route::group(['middleware' => ['can: manajemen_depresiasi']], function() {
+        Route::resource('depreciations', 'DepreciationController')->except('show');
+        Route::get('depreciations/type/{type}', 'DepreciationController@getCategory');
+        Route::get('depreciations/data/accumulation', 'DepreciationController@dataList');
+    });
 
     /**
      *  ============================================
      *  |---------------- ASSET TYPE --------------|
      *  ============================================
      */
-    Route::resource('maintenance', 'MaintenanceController');
-
+    Route::resource('maintenance', 'MaintenanceController')->middleware('can:manajemen_pemeliharaan');
 
     /**
      *  ============================================
      *  |---------------- ASSET TYPE --------------|
      *  ============================================
      */
-    Route::resource('asset-type', 'AssetTypeController');
+    Route::resource('asset-type', 'AssetTypeController')->middleware('can:manajemen_tipe_aset');
 
     /**
      *  ============================================
      *  |------------------ BRAND -----------------|
      *  ============================================
      */
-    Route::resource('brand', 'BrandController');
+    Route::resource('brand', 'BrandController')->middleware('can:manajemen_merek');
 
     /**
      *  ============================================
      *  |----------------- LOCATION ---------------|
      *  ============================================
      */
-    Route::resource('location', 'LocationController');
+    Route::resource('location', 'LocationController')->middleware('can:manajemen_lokasi');
 
     /**
      *  ============================================
      *  |---------------- DEPARTMENT --------------|
      *  ============================================
      */
-    Route::resource('department', 'DepartmentController');
+    Route::resource('department', 'DepartmentController')->middleware('can:manajemen_departemen');
 
     /**
      *  ============================================
      *  |----------------- SUPPLIER ---------------|
      *  ============================================
      */
-    Route::resource('supplier', 'SupplierController');
+    Route::resource('supplier', 'SupplierController')->middleware('can:manajemen_pemasok');
 
     /**
      *  ============================================
      *  |----------------- EMPLOYEE ---------------|
      *  ============================================
      */
-    Route::resource('employee', 'EmployeeController');
+    Route::resource('employee', 'EmployeeController')->middleware('can:manajemen_karyawan');
 
     /**
      *  ============================================
      *  |----------------- SETTING ----------------|
      *  ============================================
      */
-    Route::prefix('settings')->group(function() {
+
+    Route::group(['prefix' => 'settings', 'middleware' => ['can:manajemen_setting']], function() {
         Route::get('/', 'SettingController@index')->name('settings.index');
 
         Route::get('roles', 'SettingController@listRole')->name('settings.list-role');
